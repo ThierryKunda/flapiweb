@@ -1,0 +1,187 @@
+.profilePage {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.profilePage > button {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+	border: none;
+  border-radius: 30px;
+  background-color: #D62121;
+  color: white;
+  height: 40px;
+  width: 130px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.profilePage h1 {
+  text-align: center;
+  padding: 20px 0;
+  color: var(--primary-user);
+}
+
+.profilePage main {
+	display: flex;
+  justify-content: space-between;
+  height: 70%;
+  margin: 0;
+}
+
+.personalInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+	height: 80%;
+  width: 40%;
+  padding: 0 100px;
+}
+
+.personalInfo > div {
+	display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 80%;
+}
+
+.personalInfo h2 {
+  color: var(--primary-user);
+	font-size: 30px;
+  font-weight: normal;
+}
+
+.fixedInfo {
+	display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.fixedInfoItem {
+	display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 70px;
+}
+
+.fixedInfoItem h3 {
+	color: var(--primary-user);
+	font-size: 20px;
+  font-weight: normal;
+}
+
+.newPasswordForm {
+	display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.newPasswordForm form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 70%;
+}
+
+.newPasswordForm label, input {
+	display: block;
+}
+
+.newPasswordForm label {
+	color: var(--primary-user);
+}
+
+.newPasswordForm input {
+	outline: none;
+  border: none;
+  width: 250px;
+  border-bottom: 2px solid var(--primary-user);
+}
+
+.newPasswordForm button {
+	border-radius: 30px;
+  border: none;
+  color: white;
+  align-self: center;
+  background-color: var(--primary-user);
+  height: 40px;
+  width: 200px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.formNotification p {
+	color: #24D82B;
+  text-align: center;
+}
+
+.tokens {
+	padding: 0 100px;
+}
+
+.tokens h2 {
+	color: var(--primary-user);
+	font-size: 30px;
+  font-weight: normal;
+}
+.tokens > div {
+	display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.tokens > div button {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--primary-user);
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.tokensList {
+	display: flex;
+  flex-direction: column;
+  height: 100%;
+	overflow: auto;
+}
+
+.token {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+	min-height: 120px;
+  width: 500px;
+  overflow: hidden;
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 25px 0;
+}
+
+.token div {
+	display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.token h3 {
+	font-weight: normal;
+}
+
+.token span {
+	display: block;
+  font-size: 14px;
+}
+
+.token em {
+	font-style: normal;
+  font-weight: bold;
+}

@@ -1,0 +1,116 @@
+.homePageLayout {
+    box-sizing: border-box;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 68% auto;
+    grid-auto-flow: row;
+  }
+
+.homePagePresentation {
+    position: relative;
+    background-color: var(--primary-user);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.homePageTitle {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center
+}
+
+.extraInformation {
+    position: absolute;
+    bottom: 10px;
+    font-size: small;
+}
+
+.signForm {
+    display: grid;
+    grid-template-rows: 15% 60% auto;
+    align-items: center;
+    justify-items: center;
+    height: 100%;
+}
+
+.signFormTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formFields {
+    align-self: center;
+    height: 100%;
+}
+
+.formInput {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.signInFormInput {
+    margin: 50px 0;
+}
+
+
+.label {
+    display: block;
+    color: var(--primary-user);
+    font-size: 22px;
+}
+
+.textInput {
+    display: block;
+    border: none;
+    border-bottom: 2px solid var(--primary-user);
+    margin: 20px 0;
+    width: 300px;
+    padding: 10px 0;
+    font-size: large;
+}
+
+.textInput::placeholder {
+    color: rgba(138, 138, 138, 0.47);
+}
+
+.signUpInput {
+    width: 120px;
+}
+
+.groupedInputs {
+    display: flex;
+    justify-content: space-between;
+}
+
+.confirmationArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    text-align: center;
+}
+
+.confirmButton {
+    display: block;
+    height: 3em;
+    font-size: 24px;
+    height: fit-content;
+    padding: 15px;
+    width: 350px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.link {
+    color: var(--primary-user);
+    text-decoration: underline;
+    cursor: pointer;
+}

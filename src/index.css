@@ -1,0 +1,22 @@
+:root {
+  --primary-user: #5CD8F3;
+  --primary-admin: #5C99F3;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  height: 100vh;
+  min-width: 99vw;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}

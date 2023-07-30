@@ -1,0 +1,296 @@
+.documentationPage *, .documentationPage h1, .documentationPage h2 {
+    box-sizing: border-box;
+}
+
+.documentationPage {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-sizing: border-box;
+    margin: 0;
+    width: 100%;
+    padding: 60px 22%;
+}
+
+.documentationPage h1 {
+    color: var(--primary-user);
+    font-weight: 500;
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+nav.docTabs {
+    display: flex;
+    justify-content: space-between;
+    margin: 100px 0;
+}
+
+.docTabs button {
+    display: block;
+    border: 3px solid var(--primary-user);
+    font-size: 20px;
+    width: 200px;
+    height: 50px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color, color 0.2s ease-in;
+    background-color: transparent;
+    color: var(--primary-user);
+}
+
+.docTabs button:hover, .documentationPage .docTabActive {
+    background-color: var(--primary-user);
+    color: white;
+}
+
+ .drawerToggler, .documentationPage .drawerToggler {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #5CD8F3;
+    height: 60px;
+    width: 60px;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.drawerToggler span {
+    display: block;
+    height: 4px;
+    width: 30px;
+    background-color: white;
+}
+
+header {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    bottom: auto;
+    right: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.documentationPage button {
+    background-color: transparent;
+    border: 3px solid var(--primary-user);
+    cursor: pointer;
+    height: 60px;
+}
+
+.searchIcon {
+    width: 80%;
+    height: 80%;
+}
+
+div.searchModal {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+    z-index: 5000;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.384);
+    opacity: 0%;
+    visibility: hidden;
+    transition: opacity .1s ease-in-out;
+}
+
+div.searchModalContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 5px solid var(--primary-user);
+    position: relative;
+    padding: 15px;
+    width: 60%;
+    height: 80px;
+    background-color: white;
+}
+
+div.searchModalVisible {
+    visibility: visible;
+    opacity: 100%;
+}
+
+div.searchModal input {
+    background-color: transparent;
+    border: none;
+    width: 95%;
+    font-size: 40px;
+}
+
+.inputSearchIcon {
+    height: 100%;
+    width: auto;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 250px;
+}
+
+.loaderSmall {
+    min-height: 100px;
+}
+
+.loaderMinimum {
+    min-height: 250px;
+}
+
+.loaderLarge {
+    min-height: 500px;
+}
+
+.circleLoader {
+    box-sizing: border-box;
+    height: 50px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 12px solid var(--primary-user);
+    border-bottom-color: transparent;
+    animation: circleAnimation 1s linear infinite;
+}
+
+.loaderSmall .circleLoader {
+    height: 20px;
+    border-width: 6px;
+}
+.loaderMedium .circleLoader {
+    height: 50px;
+    border-width: 10px;
+}
+.loaderLarge .circleLoader {
+    height: 100px;
+    border-width: 12px;
+
+}
+
+@keyframes circleAnimation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.reboundLoader {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100px;
+    height: 100px;
+}
+
+.reboundLoader > div {
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 5px solid transparent;
+}
+
+.reboundLoader > div:first-child {
+    z-index: 10;
+    animation: waveAnimation 1s linear infinite;
+}
+
+.reboundLoader > div:last-child {
+    z-index: 20;
+    animation: waveAnimation 1s .4s linear infinite;
+}
+
+
+@keyframes waveAnimation {
+    0% {
+        transform: scale(0);
+        border-color: transparent;
+    }
+    
+    50% {
+        border-color: var(--primary-user);
+    }
+    
+    100% {
+        transform: scale(1);
+        border-color: transparent;
+    }
+}
+
+nav.resourcesTabs {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.resourcesTabs button {
+    box-sizing: border-box;
+    width: 250px;
+    font-size: 30px;
+    padding: 10px;
+    border: none;
+    transition: border-bottom 0.1s ease-in;
+}
+
+.resourcesTabs > button:hover, button.resourceTabActive {
+    border-bottom: 3px solid var(--primary-user);
+}
+
+.resources {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+main {
+    margin: 4em 0;
+}
+
+section > p {
+    margin: 50px 0;
+}
+
+.verbAndUri {
+    display: flex;
+    width: 100%;
+    margin: 60px 0;
+}
+
+.verbAndUri span {
+    display: inline-block;
+    color: white;
+    font-size: 20px;
+}
+
+.contentBlock {
+    min-height: 200px;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.contentBlock h2 {
+    color: var(--primary-user);
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.contentBlock p {
+    font-size: 22px;
+}
