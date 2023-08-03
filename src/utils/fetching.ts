@@ -36,24 +36,7 @@ export async function fetchStats() {
 }
 
 export async function fetchAPIDocumentationInfo(): Promise<APIDocumentationInfo> {
-    await new Promise((r) => setTimeout(r, Math.random() * 3000));
-    return {
-        description: [
-            {title: "Introduction", content: "This API is using data provided by the user (via CSV file downloaded from the official LibreView web app)."},
-            {title: "Why ?", content: "Currently there is no official REST API for third-part software. Therefore the idea is to provide an API, as well as generating some predictions base on user data."},
-            {title: "Resources", content: "For now, there are 4 kinds of resources : profile, samples, goals and statistics."}
-        ],
-        authentification: [
-            {title: "Roles", content: "As said in the description, there are two roles : normal users and administrators (users with extra privileges)."},
-            {title: "Generate a new token", content: "Tokens are generated with the /token endpoint..."},
-            {title: "Additional information", content: "The current API displayed here is also actually using the token provided by the API and stored in the browser..."}
-        ],
-        rights: [
-            {title: "General idea", content: "As written in the authentification section, there are two types of users : normal users and administrators. Administrators can make extra actions regarding the API documentation, backups management, additional information regarding the overall users set such as general statistics."},
-            {title: "In details", content: "For normal users, they (or an authorized third-part software) can do the actions stated below : ..."},
-            {title: "Additional information", content: "The list of actions displayed on this page is not exhaustive and might differ with the most recent implementation. They can be found in the API Reference, however that would usually there is still no current implementation of data retrieval for the wanted resource."}
-        ]
-    }
+    return (await fetch('http://127.0.0.1:8000/doc/general_information')).json();
 }
 
 export async function fetchSecretSignatures() {
