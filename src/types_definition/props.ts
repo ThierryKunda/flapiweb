@@ -1,6 +1,6 @@
 import { JSX, Setter, Accessor, ResourceFetcher } from "solid-js"
 import { LoaderType } from "../miscellaneous";
-import { BlockOfContent } from "./data";
+import { AverageTimeSample, BlockOfContent } from "./data";
 
 export interface APIDocDescriptionBlockProps {
     title: string,
@@ -70,4 +70,8 @@ export interface StatusNotificationProps {
 
 export interface ContentProps {
     content: BlockOfContent[] | undefined
+}
+
+export interface SamplesChartProps {
+    fetching: ResourceFetcher<any, AverageTimeSample[], any>
 }
