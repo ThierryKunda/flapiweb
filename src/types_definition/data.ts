@@ -66,3 +66,8 @@ export interface newPAT {
 export interface PersonalAccessToken extends newPAT {
     creation_date: string,
 }
+
+export interface AverageTimeSample {
+    hour: string,
+    average_value: number
+}
