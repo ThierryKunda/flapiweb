@@ -1,4 +1,4 @@
-import { APIDocumentationInfo, APIResource, FetchFeaturesResult, PersonalAccessToken, ResourcesData, UserInfo } from "../types_definition/data";
+import { APIDocumentationInfo, APIResource, AverageTimeSample, FetchFeaturesResult, PersonalAccessToken, ResourcesData, UserInfo } from "../types_definition/data";
 
 export async function storeApiToken(username: string, password: string) {
     await new Promise((r) => setTimeout(r, 1000));
@@ -53,12 +53,13 @@ export async function fetchSecretSignatures() {
 }
 
 export async function fetchResourcesData(): Promise<ResourcesData[]> {
-    await new Promise((r) => setTimeout(r, 5000));
-    return [
-        {id: 1, resource_name: "profile", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", admin_privilege: false},
-        {id: 2, resource_name: "samples", description: null, admin_privilege: false},
-        {id: 3, resource_name: "statistics", description: null, admin_privilege: false}
-    ]
+    // await new Promise((r) => setTimeout(r, 5000));
+    // return [
+    //     {id: 1, resource_name: "profile", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", admin_privilege: false},
+    //     {id: 2, resource_name: "samples", description: null, admin_privilege: false},
+    //     {id: 3, resource_name: "statistics", description: null, admin_privilege: false}
+    // ]
+    return (await fetch('http://127.0.0.1:8000/doc/resources_data')).json();
 }
 
 export async function fetchDevDB(): Promise<any[]> {
@@ -158,3 +159,15 @@ export async function fetchTokens(): Promise<PersonalAccessToken[]> {
         },
     ]
 }
+
+export async function fetchAverageDaySamples(): Promise<AverageTimeSample[]> {
+    await new Promise((r) => setTimeout(r, 2000));
+    return [
+        {hour: "00:00", average_value: 156.3},
+        {hour: "04:00", average_value: 210.7},
+        {hour: "08:00", average_value: 90.6},
+        {hour: "12:00", average_value: 155.1},
+        {hour: "16:00", average_value: 210.2},
+        {hour: "20:00", average_value: 180.9},
+    ]
+} 
