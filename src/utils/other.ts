@@ -56,6 +56,17 @@ async function createTokenBasedSession<T>(username: string, password: string, fe
     return [getToken, removeToken, getStorageKey];
 }
 
+function compareHoursAsString(h1: string, h2: string) {
+    let h1_d = new Date(`Thu, 01 Jan 1970 ${h1}:00`); 
+    let h2_d = new Date(`Thu, 01 Jan 1970 ${h2}:00`); 
+    if (h1_d < h2_d) {
+        return -1; 
+    } else if (h1_d > h2_d) {
+        return 1;
+    }
+    return 0;
+}
+
 
 export {
     capitalize,
@@ -63,5 +74,6 @@ export {
     featuresFetchingFailed,
     removeNewLineSpace,
     colorFromHTTPVerb,
-    formatPropertyNameForDisplay
+    formatPropertyNameForDisplay,
+    compareHoursAsString
 };
