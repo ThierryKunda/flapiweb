@@ -1,4 +1,4 @@
-import { APIDocumentationInfo, APIResource, AverageTimeSample, FetchFeaturesResult, PersonalAccessToken, ResourcesData, UserInfo } from "../types_definition/data";
+import { APIDocumentationInfo, APIResource, AverageTimeSample, AvgTSParams, FetchFeaturesResult, PersonalAccessToken, ResourcesData, UserInfo } from "../types_definition/data";
 
 export async function storeApiToken(username: string, password: string) {
     await new Promise((r) => setTimeout(r, 1000));
@@ -160,10 +160,21 @@ export async function fetchTokens(): Promise<PersonalAccessToken[]> {
     ]
 }
 
-export async function fetchAverageDaySamples(fetchParams: {hours: string[], error: number}): Promise<AverageTimeSample[]> {
+export async function fetchAverageDaySamples(fetchParams: AvgTSParams): Promise<AverageTimeSample[]> {
     await new Promise((r) => setTimeout(r, 2000));
     return fetchParams.hours.map((h) => ({
         hour: h,
         average_value: Math.random() * (200 - 70) + 70
     }))
-} 
+}
+
+export async function fetchLatestSamples() {
+    await new Promise((r) => setTimeout(r, 2000));
+    return [
+        {device: "LibreLink", value: 90, date: "09/07/2023-12:47"},
+        {device: "FLibre2", value: 100, date: "12/10/2023-19:33"},
+        {device: "FLibre2", value: 120, date: "29/01/2024-09:21"},
+        {device: "FLibre2", value: 70, date: "03/02/2024-15:43"},
+        {device: "FLibre2", value: 120, date: "14/03/2024-06:18"},
+    ]
+}
