@@ -9,8 +9,12 @@ export const SamplesChart: Component<SamplesChartProps> = (props) => {
   onMount(() => {
     Chart.register(Title, Tooltip, Legend, Colors)
   })
-  const [dayTimes, setDayTimes] = createSignal(["08:00", "12:00", "16:00"]);
-  const [averageSamples] = createResource(props.fetching);
+  const [dayTimes, setDayTimes] = createSignal(["00:00", "08:00", "12:00", "16:00", "20:00"]);
+  const fetchParams = () => ({
+    hours: dayTimes(),
+    error: 60
+  })
+  const [averageSamples] = createResource(fetchParams, props.fetching);
   const hours = () => averageSamples()?.map((s) => s.hour);
   const values = () => averageSamples()?.map((s) => s.average_value)
   const data = () => ({
@@ -29,16 +33,17 @@ export const SamplesChart: Component<SamplesChartProps> = (props) => {
   return <section>
     <h1>Average evolution of the week</h1>
     <div style={{display: "flex", "justify-content": "center"}}>
-      <Suspense fallback={<Loader loaderType="circle" size="large" />}>
         <DayTimes
           dayTimes={dayTimes()}
           addDayTimes={(t: string) => {if (validateTimeFormat(t)) setDayTimes(prev => [...prev, t])}}
           removeDayTimes={(t: string) => setDayTimes(prev => prev.filter((v => v !== t)))}  
         />
         <Show when={averageSamples()}>
-          <Line data={data()} options={charOptions} height={200} />
+          <Line data={data()} options={charOptions} width={100} height={100} />
         </Show>
-      </Suspense>
+        <Show when={averageSamples.loading}>
+          <Loader loaderType="circle" size="medium" />
+        </Show>
     </div>
   </section>;
 };
