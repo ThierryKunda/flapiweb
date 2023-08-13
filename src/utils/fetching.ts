@@ -160,14 +160,10 @@ export async function fetchTokens(): Promise<PersonalAccessToken[]> {
     ]
 }
 
-export async function fetchAverageDaySamples(): Promise<AverageTimeSample[]> {
+export async function fetchAverageDaySamples(fetchParams: {hours: string[], error: number}): Promise<AverageTimeSample[]> {
     await new Promise((r) => setTimeout(r, 2000));
-    return [
-        {hour: "00:00", average_value: 156.3},
-        {hour: "04:00", average_value: 210.7},
-        {hour: "08:00", average_value: 90.6},
-        {hour: "12:00", average_value: 155.1},
-        {hour: "16:00", average_value: 210.2},
-        {hour: "20:00", average_value: 180.9},
-    ]
+    return fetchParams.hours.map((h) => ({
+        hour: h,
+        average_value: Math.random() * (200 - 70) + 70
+    }))
 } 
