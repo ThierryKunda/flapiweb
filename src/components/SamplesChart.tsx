@@ -4,6 +4,7 @@ import { validateTimeFormat } from "../utils/validation";
 import { Chart, Title, Tooltip, Legend, Colors } from 'chart.js';
 import { Line } from "solid-chartjs";
 import Loader from "./Loader";
+import { compareHoursAsString } from "../utils/other";
 
 export const SamplesChart: Component<SamplesChartProps> = (props) => {
   onMount(() => {
@@ -35,7 +36,7 @@ export const SamplesChart: Component<SamplesChartProps> = (props) => {
     <div style={{display: "flex", "justify-content": "center"}}>
         <DayTimes
           dayTimes={dayTimes()}
-          addDayTimes={(t: string) => {if (validateTimeFormat(t)) setDayTimes(prev => [...prev, t])}}
+          addDayTimes={(t: string) => {if (validateTimeFormat(t)) setDayTimes(prev => [...prev, t].sort((h1, h2) => compareHoursAsString(h1, h2)))}}
           removeDayTimes={(t: string) => setDayTimes(prev => prev.filter((v => v !== t)))}  
         />
         <Show when={averageSamples()}>
