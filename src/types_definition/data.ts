@@ -71,3 +71,8 @@ export interface AverageTimeSample {
     hour: string,
     average_value: number
 }
+
+export interface AvgTSParams {
+    hours: string[],
+    error: number
+}
