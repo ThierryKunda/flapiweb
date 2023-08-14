@@ -178,3 +178,11 @@ export async function fetchLatestSamples() {
         {device: "FLibre2", value: 120, date: "14/03/2024-06:18"},
     ]
 }
+
+export async function fetchTriggerPasswordReset(confirm: boolean) {
+    if (confirm) {
+        await new Promise((r) => setTimeout(r, 2000));
+        return {sent_from: "Windows Mozilla", received_at: "14/08/2023-16:21"};
+    }
+    return null;
+}
