@@ -1,7 +1,6 @@
 import { Component, For, Show, createSignal, createResource } from "solid-js";
-import { createForm } from "@modular-forms/solid";
 
-import { fetchTokens, fetchUserPersonalInfo } from "../utils/fetching";
+import { fetchTokens, fetchTriggerPasswordReset, fetchUserPersonalInfo } from "../utils/fetching";
 import { formatPropertyNameForDisplay } from "../utils/other";
 import { PersonalAccessToken, UserInfo } from "../types_definition/data";
 
@@ -39,43 +38,17 @@ const PersonalInformation: Component = () => {
 
 
 
-const NewPassword: Component = () => {
-  const [newPasswordForm, { Form, Field }] = createForm<NewPasswordForm>();
-
-
-  const handleSubmit = (values: NewPasswordForm) => {
-
-  };
-  return <div class={styles.newPasswordForm}>
-    <Form onSubmit={(v) => {}}>
-      <Field name="oldPassword">
-        {(field, props) =>
-        <div>
-          <label for="oldPassword">Old password</label>
-          <input {...props} type="password" />
-        </div>
-        }
-      </Field>
-      <Field name="newPassword">
-        {(field, props) =>
-        <div>
-        	<label for="newPassword">New password</label>
-        	<input {...props} type="password" />  
-        </div>
-        }
-      </Field>
-      <Field name="confirmNewPassword">
-        {(field, props) => 
-        <div>
-        	<label for="confirmNewPassword">Confirm new password</label>
-          <input {...props} type="password" />
-        </div>
-        }
-      </Field>
-      <button type="submit">Change password</button>
-    </Form>
-    <FormNotification isSuccess={false} description={"Failure !"} />
-  </div>;
+const NewPassword: Component = (props) => {
+  const [triggered, setTriggered] = createSignal(false);
+  const [resetResponse] = createResource(triggered, fetchTriggerPasswordReset);
+  return <div class={styles.triggerResetPassword}>
+    <button onClick={() => setTriggered(true)}>Reset password</button>
+    <Show when={triggered()}>
+      <Show when={resetResponse()} fallback={<Loader loaderType="circle" size="medium" />}>
+        <p>Password reset request succesfully sent.</p>
+      </Show>
+    </Show>
+  </div>
 };
 
 const FormNotification: Component<{isSuccess: boolean|undefined, description: string}> = (props) => {

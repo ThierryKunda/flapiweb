@@ -54,6 +54,21 @@
   font-weight: normal;
 }
 
+.triggerResetPassword > button {
+  height: 50px;
+  padding: 0 80px;
+  border-radius: 50px;
+  background-color: var(--primary-user);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.triggerResetPassword p {
+  text-align: center;
+  color: #24D82B;
+}
+
 .fixedInfo {
 	display: flex;
   flex-direction: column;
@@ -72,52 +87,6 @@
 	color: var(--primary-user);
 	font-size: 20px;
   font-weight: normal;
-}
-
-.newPasswordForm {
-	display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-}
-
-.newPasswordForm form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 70%;
-}
-
-.newPasswordForm label, input {
-	display: block;
-}
-
-.newPasswordForm label {
-	color: var(--primary-user);
-}
-
-.newPasswordForm input {
-	outline: none;
-  border: none;
-  width: 250px;
-  border-bottom: 2px solid var(--primary-user);
-}
-
-.newPasswordForm button {
-	border-radius: 30px;
-  border: none;
-  color: white;
-  align-self: center;
-  background-color: var(--primary-user);
-  height: 40px;
-  width: 200px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.formNotification p {
-	color: #24D82B;
-  text-align: center;
 }
 
 .tokens {
