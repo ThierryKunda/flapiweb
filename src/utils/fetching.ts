@@ -1,4 +1,4 @@
-import { APIDocumentationInfo, APIResource, AverageTimeSample, AvgTSParams, FetchFeaturesResult, PersonalAccessToken, ResourcesData, UserInfo } from "../types_definition/data";
+import { APIDocumentationInfo, APIResource, AverageTimeSample, AvgTSParams, FetchFeaturesResult, PersonalAccessToken, ResourcesData, Stats, UserInfo } from "../types_definition/data";
 
 export async function storeApiToken(username: string, password: string) {
     await new Promise((r) => setTimeout(r, 1000));
@@ -25,7 +25,7 @@ export async function fetchLatestAnnouncement() {
     return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Facilisis leo vel fringilla est ullamcorper eget nulla. Id volutpat lacus laoreet non. Aliquet risus feugiat in ante metus dictum at tempor. Ultricies leo integer malesuada nunc. Mauris a diam maecenas sed enim ut sem. Leo vel fringilla est ullamcorper eget nulla facilisi. Felis eget velit aliquet sagittis id consectetur purus ut. Eu scelerisque felis imperdiet proin fermentum leo vel orci. Arcu vitae elementum curabitur vitae nunc."
 }
 
-export async function fetchStats() {
+export async function fetchStats(): Promise<Stats> {
     await new Promise((r) => setTimeout(r, 2000));
     return {
         mean: Math.random() * 80,
