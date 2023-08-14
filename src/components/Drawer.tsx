@@ -12,7 +12,6 @@ const Drawer: Component<{visible: boolean}> = (props) => {
             <A href="/summary">Summary</A>
             <A href="/docs">Documentation</A>
             <A href="/profile">Profile</A>
-            <a href="#">Goals</a>
         </div>
         <div class={styles.drawerBottomInfo}>
             <h2>Thierry Kunda</h2>
