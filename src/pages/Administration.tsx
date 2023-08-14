@@ -27,20 +27,6 @@ const Administration: Component = () => {
                 setSearchInput={setSearchInput}
                 previousInput={searchInput()}
             />
-            <section class={styles.announcement}>
-                <div class={styles.announcementOutput}>
-                    <h1>Latest announcement</h1>
-                    <Suspense fallback={<Loader />}>
-                        <div>
-                            <p class={styles.latestAnnContent} classList={{
-                            [styles.showAll]: showAllAnn()
-                        }}>{latestAnn()}</p>
-                        </div>
-                        <button onClick={() => setShowAllAnn(shown => !shown)}>Show all</button>
-                    </Suspense>
-                </div>
-                <button class={styles.manageAnnBtn}>Manage announcement</button>
-            </section>
             <section class={styles.statistics}>
                 <h1>Statistics preview</h1>
                 <Suspense fallback={<Loader loaderType="circle" />}>
