@@ -76,3 +76,10 @@ export interface AvgTSParams {
     hours: string[],
     error: number
 }
+
+export interface Stats {
+    mean: number,
+    median: number,
+    variance: number,
+    std_dev: number
+}
