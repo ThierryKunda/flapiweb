@@ -75,12 +75,6 @@ const Administration: Component = () => {
                 fetching={[fetchSecretSignatures, fetchResourcesData]}
                 maxItemDisplayed={3}
             />
-            <DataTable
-                tableTitle="Database versioning and migrations"
-                dataTitles={['Production', 'Development']}
-                fetching={[fetchDevDB, fetchProdDB]}
-                maxItemDisplayed={3}
-            />
         </div>
     </SuspenseList>
 };
