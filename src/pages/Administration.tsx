@@ -12,9 +12,6 @@ const Administration: Component = () => {
     const [drawerVisible, setDrawerVisible] = createSignal(false);
     const [searchModalVisible, setSearchModalVisible] = createSignal(false);
     const [searchInput, setSearchInput] = createSignal('');
-    const [showAllAnn, setShowAllAnn] = createSignal(false);
-    
-    const [latestAnn] = createResource(fetchLatestAnnouncement);
     const [stats] = createResource(fetchStats);
 
     return <SuspenseList revealOrder="forwards">
