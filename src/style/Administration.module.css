@@ -2,7 +2,7 @@
     padding: 50px 20%;
 }
 
-section:not(.announcement) {
+section {
     min-height: 360px;
 }
 
@@ -15,60 +15,6 @@ section:not(.announcement) {
     font-size: 35px;
     font-weight: bold;
     margin: 50px 0;
-}
-
-.announcement {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.announcementOutput {
-    display: flex;
-    width: 60%;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: start;
-    min-height: 100px;
-}
-
-.announcementOutput h1 {
-    font-size: medium;
-    color: black;
-    margin: 0;
-}
-
-.announcementOutput button {
-    border: 1.5px solid black;
-    height: 30px;
-    width: 75px;
-    font-size: 16px;
-    border-radius: 20px;
-}
-
-.latestAnnContent {
-    width: 80%;
-    font-size: 20px;
-    height: 45px;
-    overflow-y: hidden;
-    text-overflow: ellipsis;
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 10px;
-}
-
-.showAll {
-    height: fit-content;
-}
-
-.manageAnnBtn {
-    border: 1px solid var(--primary-admin);
-    border-radius: 30px;
-    height: 45px;
-    min-width: 250px;
-    color: var(--primary-admin);
-    font-size: 16px;
-    font-weight: bold;
 }
 
 .statsValues {
