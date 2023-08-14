@@ -10,8 +10,9 @@ import { Field, Form, SubmitHandler, createForm } from "@modular-forms/solid";
 import { SamplesFileUploadForm } from "../types_definition/forms";
 import { SamplesChart } from "../components/SamplesChart";
 
-import { fetchAverageDaySamples, fetchLatestSamples } from "../utils/fetching";
+import { fetchAverageDaySamples, fetchLatestSamples, fetchStats } from "../utils/fetching";
 import DataTable from "../components/DataTable";
+import Stats from "../components/Stats";
 
 const Summary: Component = (props) => {
     const [drawerVisible, setDrawerVisible] = createSignal(false);
@@ -25,6 +26,7 @@ const Summary: Component = (props) => {
           maxItemDisplayed={3}
           tableTitle="Latest samples"
         />
+        <Stats fetching={fetchStats} />
     </div>
     <button class={styles.drawerToggler} onClick={(ev) => setDrawerVisible(v => !v)}>
         <span></span>
