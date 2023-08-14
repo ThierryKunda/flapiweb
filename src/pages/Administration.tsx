@@ -19,7 +19,7 @@ const Administration: Component = () => {
 
     return <SuspenseList revealOrder="forwards">
         <div class={styles.administrationPage}>
-            <Header setDrawerVisible={setDrawerVisible} setSearchModalVisible={setSearchModalVisible} />
+            <Header setDrawerVisible={setDrawerVisible} />
             <Drawer visible={drawerVisible()} />
             <Search
                 searchModalVisible={searchModalVisible()}
