@@ -7,12 +7,12 @@ import Loader from "../components/Loader";
 
 import { fetchResourcesData, fetchSecretSignatures, fetchStats } from "../utils/fetching";
 import styles from "../style/Administration.module.css";
+import Stats from "../components/Stats";
 
 const Administration: Component = () => {
     const [drawerVisible, setDrawerVisible] = createSignal(false);
     const [searchModalVisible, setSearchModalVisible] = createSignal(false);
     const [searchInput, setSearchInput] = createSignal('');
-    const [stats] = createResource(fetchStats);
 
     return <SuspenseList revealOrder="forwards">
         <div class={styles.administrationPage}>
@@ -24,29 +24,7 @@ const Administration: Component = () => {
                 setSearchInput={setSearchInput}
                 previousInput={searchInput()}
             />
-            <section class={styles.statistics}>
-                <h1>Statistics preview</h1>
-                <Suspense fallback={<Loader loaderType="circle" />}>
-                    <div class={styles.statsValues}>
-                        <div>
-                            <h2>Mean</h2>
-                            <span>{stats()?.mean}</span>
-                        </div>
-                        <div>
-                            <h2>Median</h2>
-                            <span>{stats()?.median}</span>
-                        </div>
-                        <div>
-                            <h2>Variance</h2>
-                            <span>{stats()?.variance}</span>
-                        </div>
-                        <div>
-                            <h2>Standard deviation</h2>
-                            <span>{stats()?.std_dev}</span>
-                        </div>
-                    </div>
-                </Suspense>
-            </section>
+            <Stats fetching={fetchStats} />
             <DataTable
                 tableTitle="Secret signatures"
                 fetching={[fetchSecretSignatures]}
