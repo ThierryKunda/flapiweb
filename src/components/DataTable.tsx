@@ -29,15 +29,11 @@ const DataTable: DataTableComponent = (props) => {
   return <section class={styles.dataTable}>
     <h1>{props.tableTitle}</h1>
       <Show when={props.dataTitles}>
-        <div class={styles.dataTitles}>
-          <For each={props.dataTitles}>{(title, i) =>
-            <button classList={{
-              [styles.tabSelected]: tabSelected() === i()
-            }} onClick={() => setTabSelected(i)}>
-              <h2>{title}</h2>
-            </button>
-          }</For>
-        </div>
+        <DataTitles
+          dataTitles={props.dataTitles!}
+          setTabSelectedIndex={(idx: number) => setTabSelected(idx)}
+          tabSelectedIndex={tabSelected()}
+        />
       </Show>
       <Show
         when={data[tabSelected()]()}
@@ -82,6 +78,19 @@ const Record: RecordComponent = (props) => {
   </div>;
 };
 
+
+const DataTitles: Component<{dataTitles: string[], tabSelectedIndex: number, setTabSelectedIndex: (idx: number) => void}> = (props) => {
+  
+  return <div class={styles.dataTitles}>
+  <For each={props.dataTitles}>{(title, i) =>
+    <button classList={{
+      [styles.tabSelected]: props.tabSelectedIndex === i()
+    }} onClick={() => props.setTabSelectedIndex(i())}>
+      <h2>{title}</h2>
+    </button>
+  }</For>
+</div>;
+};
 
 const TableHeader: Component<TableHeaderProps> = (props) => {
   return <div class={styles.tableHeader}>
