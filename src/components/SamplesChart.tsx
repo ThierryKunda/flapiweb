@@ -28,8 +28,8 @@ export const SamplesChart: Component<SamplesChartProps> = (props) => {
     ]
   })
   const charOptions = {
-    responsive: true,
-    maintainAspectRatio: true
+    responsive: false,
+    maintainAspectRatio: false
   };
   return <section>
     <h1>Average evolution of the week</h1>
@@ -40,7 +40,7 @@ export const SamplesChart: Component<SamplesChartProps> = (props) => {
           removeDayTimes={(t: string) => setDayTimes(prev => prev.filter((v => v !== t)))}  
         />
         <Show when={averageSamples()}>
-          <Line data={data()} options={charOptions} width={100} height={100} />
+          <Line data={data()} options={charOptions} width={500} height={400} />
         </Show>
         <Show when={averageSamples.loading}>
           <Loader loaderType="circle" size="medium" />
@@ -73,20 +73,22 @@ const DayTimes: Component<{
         }}>
       </div>
     </div>
-      <For each={props.dayTimes}>{(t) =>
-        <span style={{
-          display: "block",
-          border: "2px solid black",
-          "border-radius": "50px",
-          "padding": "10px",
-          "width": "100px",
-          "text-align": "center",
-          "margin": "10px 0",
-          "cursor": "pointer",
-        }}
-        onClick={() => props.removeDayTimes(t)}
-        >{t}</span>
-      }</For>
+      <div style={{display: "flex", "flex-direction": "column", "flex-wrap": "wrap", "max-height": "400px"}}>
+        <For each={props.dayTimes}>{(t) =>
+          <span style={{
+            display: "block",
+            border: "2px solid black",
+            "border-radius": "50px",
+            "padding": "10px",
+            "width": "100px",
+            "text-align": "center",
+            "margin": "10px 0",
+            "cursor": "pointer",
+          }}
+          onClick={() => props.removeDayTimes(t)}
+          >{t}</span>
+        }</For>
+      </div>
     </div>
   </div>;
 };
