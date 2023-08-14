@@ -5,7 +5,7 @@ import Search from "../components/Search";
 import DataTable from "../components/DataTable";
 import Loader from "../components/Loader";
 
-import { fetchDevDB, fetchLatestAnnouncement, fetchProdDB, fetchResourcesData, fetchSecretSignatures, fetchStats } from "../utils/fetching";
+import { fetchResourcesData, fetchSecretSignatures, fetchStats } from "../utils/fetching";
 import styles from "../style/Administration.module.css";
 
 const Administration: Component = () => {
