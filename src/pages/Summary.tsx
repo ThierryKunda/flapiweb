@@ -13,6 +13,7 @@ import { SamplesChart } from "../components/SamplesChart";
 import { fetchAverageDaySamples, fetchLatestSamples, fetchStats } from "../utils/fetching";
 import DataTable from "../components/DataTable";
 import Stats from "../components/Stats";
+import DragAndDrop from "../components/DragAndDrop";
 
 const Summary: Component = (props) => {
     const [drawerVisible, setDrawerVisible] = createSignal(false);
@@ -27,6 +28,7 @@ const Summary: Component = (props) => {
           tableTitle="Latest samples"
         />
         <Stats fetching={fetchStats} />
+        <DragAndDrop />
     </div>
     <button class={styles.drawerToggler} onClick={(ev) => setDrawerVisible(v => !v)}>
         <span></span>
