@@ -1,7 +1,38 @@
-import { Component, Show, createSignal } from "solid-js";
+import { Component, Match, Show, Switch, createResource, createSignal } from "solid-js";
+import { DragAndDropProps } from "../types_definition/props";
+import Loader from "./Loader";
 
-const DragAndDrop: Component = () => {
-  const [fileName, setFileName] = createSignal<string|null>(null);
+type SubmitEvent = MouseEvent & {
+  currentTarget: HTMLButtonElement;
+  target: Element;
+}
+
+type FileInputEvent = InputEvent & {
+  currentTarget: HTMLInputElement;
+  target: HTMLInputElement;
+}
+
+
+const DragAndDrop: Component<DragAndDropProps> = (props) => {
+  const [droppedFile, setDroppedFile] = createSignal<File|null>(null);
+  const [confirm, setConfirm] = createSignal(false);
+  const params = () => ({
+    username: '',
+    apiToken: '',
+    confirm: confirm(),
+    file: droppedFile()
+  })
+  const [uploadResponse] = createResource(params, props.sendAction);
+  
+  const handleSubmit = (ev: SubmitEvent) => {
+    ev.preventDefault();
+    setConfirm(true)
+  }
+
+  const handleFileInput = (ev: FileInputEvent) => {
+    setConfirm(false);
+    setDroppedFile(ev.target.files![0]);
+  }
   return <section>
     <form>
         <div
@@ -26,12 +57,20 @@ const DragAndDrop: Component = () => {
               "100%"
             }}
             type="file"
-            onInput={(ev) => setFileName(ev.target.files![0].name)} />
-          <Show when={fileName()} fallback={<p>Drop your data file here.</p>}>
-            <p>{fileName()}</p>
+            onInput={(ev) => handleFileInput(ev)} />
+          <Show when={droppedFile()} fallback={<p>{props.sendButtonText}</p>}>
+            <p>{droppedFile()!.name}</p>
           </Show>
         </div>
-        <button type="submit" onClick={(ev) => {ev.preventDefault(); console.log(fileName())}}>Upload</button>
+        <button type="submit" onClick={(ev) => handleSubmit(ev)}>Upload</button>
+        <Switch>
+          <Match when={uploadResponse()}>
+              <p>{uploadResponse()!.message}</p>
+          </Match>
+          <Match when={uploadResponse() === null && confirm()}>
+            <Loader loaderType="circle" size="small" />
+          </Match>
+        </Switch>
     </form>
   </section>
 };
