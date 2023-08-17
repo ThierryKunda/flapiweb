@@ -1,6 +1,6 @@
 import { JSX, Setter, Accessor, ResourceFetcher } from "solid-js"
 import { LoaderType } from "../miscellaneous";
-import { AverageTimeSample, BlockOfContent, Stats } from "./data";
+import { AverageTimeSample, BlockOfContent, FileUploadStatus, Stats } from "./data";
 
 export interface APIDocDescriptionBlockProps {
     title: string,
@@ -78,4 +78,9 @@ export interface SamplesChartProps {
 
 export interface StatsProps {
     fetching: ResourceFetcher<any, Stats, any>
+}
+
+export interface DragAndDropProps {
+    sendAction: ResourceFetcher<any, FileUploadStatus|null, any>
+    sendButtonText: string
 }
