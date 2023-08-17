@@ -1,4 +1,4 @@
-import { APIDocumentationInfo, APIResource, AverageTimeSample, AvgTSParams, FetchFeaturesResult, PersonalAccessToken, ResourcesData, Stats, UserInfo } from "../types_definition/data";
+import { APIDocumentationInfo, APIResource, AverageTimeSample, AvgTSParams, FetchFeaturesResult, FileUploadParams, FileUploadStatus, PersonalAccessToken, ResourcesData, Stats, UserInfo } from "../types_definition/data";
 
 export async function storeApiToken(username: string, password: string) {
     await new Promise((r) => setTimeout(r, 1000));
@@ -183,6 +183,25 @@ export async function fetchTriggerPasswordReset(confirm: boolean) {
     if (confirm) {
         await new Promise((r) => setTimeout(r, 2000));
         return {sent_from: "Windows Mozilla", received_at: "14/08/2023-16:21"};
+    }
+    return null;
+}
+
+export async function sendFile(params: FileUploadParams): Promise<FileUploadStatus | null> {
+    await new Promise((r) => setTimeout(r, 2000));
+    if (params.confirm) {
+        // return (await fetch(`http://127.0.0.1:8000/users/${params.username}/raw_data`, {
+        // method: "POST",
+        // body: params.file,
+        // headers: new Headers({
+        //     "Content-Type": "text/csv",
+        //     "Accept": "application/json",
+        //     "Authorization": `Bearer ${params.apiToken}`
+        // })
+        // })).json() as Promise<FileUploadStatus>
+        return {
+            message: "Your data was succesfully uploaded !"
+        }
     }
     return null;
 }
