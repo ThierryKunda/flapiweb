@@ -34,11 +34,11 @@ const DragAndDrop: Component<DragAndDropProps> = (props) => {
     setDroppedFile(ev.target.files![0]);
   }
   return <section>
-    <form>
+    <form style={{display: "flex", "flex-direction": "column", "align-items": "center"}}>
         <div
           style={{
             position: "relative",
-            border: "3px dashed black",
+            border: "3px dashed #5CD8F3",
             "border-radius": "14px",
             width: "600px",
             "min-height": "200px",
@@ -58,11 +58,23 @@ const DragAndDrop: Component<DragAndDropProps> = (props) => {
             }}
             type="file"
             onInput={(ev) => handleFileInput(ev)} />
-          <Show when={droppedFile()} fallback={<p>{props.sendButtonText}</p>}>
-            <p>{droppedFile()!.name}</p>
-          </Show>
+          
+          <p style={{color: "#5CD8F3"}}>{droppedFile() ? droppedFile()!.name : props.sendButtonText}</p>
         </div>
-        <button type="submit" onClick={(ev) => handleSubmit(ev)}>Upload</button>
+        <button
+          style={{
+            display: "block",
+            "background-color": "#5CD8F3",
+            color: "white",
+            "font-size": "20px",
+            padding: "10px",
+            "margin-top": "25px",
+            width: "200px",
+            border: "none",
+            "border-radius": "50px"
+          }}
+          type="submit" onClick={(ev) => handleSubmit(ev)}
+        >Upload</button>
         <Switch>
           <Match when={uploadResponse()}>
               <p>{uploadResponse()!.message}</p>
