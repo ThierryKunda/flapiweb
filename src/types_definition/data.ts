@@ -83,3 +83,14 @@ export interface Stats {
     variance: number,
     std_dev: number
 }
+
+export interface FileUploadParams {
+    username: string,
+    apiToken: string,
+    confirm: boolean,
+    file: File
+}
+
+export interface FileUploadStatus {
+    message: string,
+}
