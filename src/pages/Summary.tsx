@@ -10,7 +10,7 @@ import { Field, Form, SubmitHandler, createForm } from "@modular-forms/solid";
 import { SamplesFileUploadForm } from "../types_definition/forms";
 import { SamplesChart } from "../components/SamplesChart";
 
-import { fetchAverageDaySamples, fetchLatestSamples, fetchStats } from "../utils/fetching";
+import { fetchAverageDaySamples, fetchLatestSamples, fetchStats, sendFile } from "../utils/fetching";
 import DataTable from "../components/DataTable";
 import Stats from "../components/Stats";
 import DragAndDrop from "../components/DragAndDrop";
@@ -28,7 +28,10 @@ const Summary: Component = (props) => {
           tableTitle="Latest samples"
         />
         <Stats fetching={fetchStats} />
-        <DragAndDrop />
+        <DragAndDrop
+          sendButtonText="Drop your data file here."
+          sendAction={sendFile}
+        />
     </div>
     <button class={styles.drawerToggler} onClick={(ev) => setDrawerVisible(v => !v)}>
         <span></span>
