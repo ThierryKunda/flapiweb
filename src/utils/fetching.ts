@@ -188,17 +188,20 @@ export async function fetchTriggerPasswordReset(confirm: boolean) {
 }
 
 export async function sendFile(params: FileUploadParams): Promise<FileUploadStatus | null> {
-    await new Promise((r) => setTimeout(r, 2000));
+    // await new Promise((r) => setTimeout(r, 2000));
+    // const uri = `http://127.0.0.1:8000/users/${params.username}/raw_data`;
+    // const form = new FormData();
+    // form.append("file", params.file);
     if (params.confirm) {
-        // return (await fetch(`http://127.0.0.1:8000/users/${params.username}/raw_data`, {
-        // method: "POST",
-        // body: params.file,
-        // headers: new Headers({
-        //     "Content-Type": "text/csv",
-        //     "Accept": "application/json",
-        //     "Authorization": `Bearer ${params.apiToken}`
+        // let fetchRes = await fetch(uri, {
+        //     method: "POST",
+        //     body: form,
+        //     headers: new Headers({
+        //         "Accept": "application/json",
+        //         "Authorization": `Bearer ${params.apiToken}`
+        //     })
         // })
-        // })).json() as Promise<FileUploadStatus>
+        // return await fetchRes.json();
         return {
             message: "Your data was succesfully uploaded !"
         }
