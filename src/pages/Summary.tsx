@@ -1,13 +1,8 @@
-import { Component, createSignal, onMount, For } from "solid-js";
-import { Chart, Title, Tooltip, Legend, Colors } from "chart.js";
-import { Line } from "solid-chartjs";
+import { Component, createSignal } from "solid-js";
 
 import Drawer from "../components/Drawer";
 
 import styles from "../style/Summary.module.css";
-import { Sample } from "../types_definition/data";
-import { Field, Form, SubmitHandler, createForm } from "@modular-forms/solid";
-import { SamplesFileUploadForm } from "../types_definition/forms";
 import { SamplesChart } from "../components/SamplesChart";
 
 import { fetchAverageDaySamples, fetchLatestSamples, fetchStats, sendFile } from "../utils/fetching";
