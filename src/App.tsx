@@ -1,4 +1,5 @@
-import type { Component } from 'solid-js';
+import { createResource, type Component } from 'solid-js';
+import { createStore } from "solid-js/store";
 import { Routes, Route } from "@solidjs/router";
 
 import HomePage from './pages/HomePage';
@@ -8,20 +9,22 @@ import Administration from './pages/Administration';
 import PasswordRecovery from './pages/PasswordRecovery';
 import NewPassword from './pages/NewPassword';
 import Profile from './pages/Profile';
+import { SessionProvider } from './contexts';
 
 const App: Component = () => {
   return (
-    <>
-      <Routes>
-        <Route path='/'  component={HomePage} />
-        <Route path='/summary' component={Summary} />
-        <Route path='/docs' component={Documentation} />
-        <Route path='/admin' component={Administration} />
-        <Route path='/password_recovery' component={PasswordRecovery} />
-        <Route path='/profile'  component={Profile} />
-        <Route path='/new_password'  component={NewPassword} />
-      </Routes>
-    </>
+    
+      <SessionProvider session={{authorized: false, access_token: undefined, token_type: undefined}}>
+        <Routes>
+          <Route path='/'  component={HomePage} />
+            <Route path='/summary' component={Summary} />
+            <Route path='/docs' component={Documentation} />
+            <Route path='/admin' component={Administration} />
+            <Route path='/password_recovery' component={PasswordRecovery} />
+            <Route path='/profile'  component={Profile} />
+            <Route path='/new_password'  component={NewPassword} />
+        </Routes>
+      </SessionProvider>
   );
 }
 
