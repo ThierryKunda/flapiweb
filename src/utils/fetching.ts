@@ -1,15 +1,5 @@
 import { APIDocumentationInfo, APIResource, AverageTimeSample, AvgTSParams, FetchFeaturesResult, FileUploadParams, FileUploadStatus, PersonalAccessToken, ResourcesData, Stats, UserInfo } from "../types_definition/data";
 
-export async function storeApiToken(username: string, password: string) {
-    await new Promise((r) => setTimeout(r, 1000));
-    sessionStorage.setItem('apiToken', JSON.stringify({access_token: "12ac3a8fc12cb4", token_type: "bearer"}));
-}
-
-export function getApiToken() {
-    let token = sessionStorage.getItem('apiToken');
-    return token ? JSON.parse(token) as {access_token: string, token_type: string} : null;
-}
-
 export async function fetchResources(): Promise<APIResource[]> {
     await new Promise((r) => setTimeout(r, 500));
     return (await fetch('http://localhost:8000/doc/resources')).json();
