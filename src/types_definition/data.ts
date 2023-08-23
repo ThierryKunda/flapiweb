@@ -94,3 +94,8 @@ export interface FileUploadParams {
 export interface FileUploadStatus {
     message: string,
 }
+
+export interface TokenInformation {
+    access_token: string,
+    token_type: string
+}
