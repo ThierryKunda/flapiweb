@@ -4,8 +4,15 @@ import { useNavigate } from "@solidjs/router";
 
 import { SignInForm, SignUpForm } from "../types_definition/forms";
 import styles from "../style/HomePage.module.css";
+import { storeApiToken } from "../utils/session";
+import { useSession } from "../contexts";
 
 const HomePage: Component = () => {
+    const navigate = useNavigate();
+    const [session] = useSession();
+    if (session.authorized) {
+        navigate("/summary")
+    }
     return (<div class={styles.homePageLayout}>
         <header class={styles.homePagePresentation}>
             <div class={styles.homePageTitle}>
@@ -43,11 +50,7 @@ const SignForm: Component = () => {
 const SignIn: Component<{setSignIn: Setter<boolean>, toNextPage: (validInputs: boolean) => void}> = (props) => {
     const [signInForm, {Form, Field, FieldArray}] = createForm<SignInForm>();
     const [session, {authentificate}] = useSession();
-    // If user already authentified => redirect user to "/summary" page
     const navigate = useNavigate();
-    if (session.authorized) {
-        navigate("/summary")
-    }
     const handleSubmit: SubmitHandler<SignInForm> = (values, event) => {
         // Authentificate user using API
         const authSuccess = authentificate?.({username: values.username, password: values.password});
