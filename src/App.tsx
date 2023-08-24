@@ -14,7 +14,7 @@ import { SessionProvider } from './contexts';
 const App: Component = () => {
   return (
     
-      <SessionProvider session={{authorized: false, access_token: undefined, token_type: undefined}}>
+      <SessionProvider session={{username: undefined, authorized: false, access_token: undefined, token_type: undefined}}>
         <Routes>
           <Route path='/'  component={HomePage} />
             <Route path='/summary' component={Summary} />
