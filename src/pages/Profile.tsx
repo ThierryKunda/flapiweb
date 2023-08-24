@@ -108,7 +108,13 @@ const TokensList: Component = () => {
 
 const Token: Component<{data: PersonalAccessToken}> = (props) => {
   const rightsAssigned: string[] = [];
-  Object.entries(props.data.rights).forEach((pair) => {
+  const rights = {
+    profile: props.data.profile_right,
+    samples: props.data.samples_right,
+    goals: props.data.goals_right,
+    stats: props.data.stats_right,
+  }
+  Object.entries(rights).forEach((pair) => {
     if (pair[1]) {
       rightsAssigned.push(pair[0]);
     }
