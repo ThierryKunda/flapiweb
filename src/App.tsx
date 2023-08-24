@@ -10,17 +10,18 @@ import PasswordRecovery from './pages/PasswordRecovery';
 import NewPassword from './pages/NewPassword';
 import Profile from './pages/Profile';
 import { SessionProvider } from './contexts';
+import { getApiToken } from './utils/session';
 
 const App: Component = () => {
   const session = getApiToken() ? {...getApiToken()!, authorized: true} : {
     username: undefined,
     authorized: false,
-    access_token: undefined,
+    access_token: "ok",
     token_type: undefined
   };
   return (
     
-      <SessionProvider session={{username: undefined, authorized: false, access_token: undefined, token_type: undefined}}>
+      <SessionProvider session={session}>
         <Routes>
           <Route path='/'  component={HomePage} />
             <Route path='/summary' component={Summary} />
