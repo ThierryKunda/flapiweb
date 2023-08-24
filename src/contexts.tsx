@@ -12,6 +12,7 @@ interface OptionalTokenInformation {
 type SessionCtxType = [
   {
     authorized: boolean,
+    username: string | undefined,
   } & OptionalTokenInformation,
   {
     authentificate?: (reqParams: {username: string, password: string}) => Promise<boolean>, 
@@ -20,9 +21,9 @@ type SessionCtxType = [
   }
 ]
 
-export const SessionContext = createContext<SessionCtxType>([{authorized: false, access_token: undefined, token_type: undefined}, {}]);
+export const SessionContext = createContext<SessionCtxType>([{username: undefined, authorized: false, access_token: undefined, token_type: undefined}, {}]);
 
-export const SessionProvider: FlowComponent<{session: OptionalTokenInformation & {authorized: boolean}}, JSX.Element> = (props) => {
+export const SessionProvider: FlowComponent<{session: OptionalTokenInformation & {authorized: boolean, username: string | undefined}}, JSX.Element> = (props) => {
   const [state, setState] = createStore(props.session);
   const session: SessionCtxType = [
     state,
