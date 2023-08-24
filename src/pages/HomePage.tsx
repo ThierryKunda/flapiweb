@@ -94,7 +94,7 @@ const SignIn: Component<{setSignIn: Setter<boolean>, toNextPage: (validInputs: b
                     "background-color": "#5CD8F3",
                     "color": "white",
                     "border": "none"
-                }} onclick={(ev) => props.toNextPage(true)}
+                }}
                 >Log In</button>
                 <p>Doesn't have an account yet ? <a class={styles.link} onClick={(ev) => {
                     ev.preventDefault();
