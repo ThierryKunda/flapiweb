@@ -41,15 +41,9 @@ export async function fetchResourcesData(): Promise<ResourcesData[]> {
     return (await fetch('http://127.0.0.1:8000/doc/resources_data')).json();
 }
 
-export async function fetchUserPersonalInfo(): Promise<UserInfo> {
-    await new Promise((r) => setTimeout(r, 3000));
-    return {
-        first_name: "John",
-        last_name: "Doe",
-        username: "John_Doe",
-        email: "john.doe@example.com",
-        devices: ["FreestyleLibre 1", "FreestyleLibre 2", "FreestyleLibreLink"]
-    }
+export async function fetchUserPersonalInfo(token: string): Promise<UserInfo> {
+    const res = await fetch(`http://localhost:8000/user`, {headers: {"Authorization": `Bearer ${token}`}});
+    return await res.json() as UserInfo;
 }
 
 
@@ -78,43 +72,9 @@ export async function setNewPassword(data: {
     }
 }
 
-export async function fetchTokens(): Promise<PersonalAccessToken[]> {
-    await new Promise((r) => setTimeout(r, 2000));
-    return [
-        {
-            app_name: 'MyHealth Mobile App',
-            token_value: 'ab6f89ef7c15d',
-            rights: {profile: true, stats: true, goals: false, samples: false},
-            creation_date: '23/07/2023',
-            expiration_date: '23/07/2023'
-        },
-        {
-            app_name: 'Some random CLI app',
-            token_value: 'ab6f89ef7c15d',
-            rights: {profile: true, stats: true, goals: false, samples: false},
-            creation_date: '23/07/2023',
-            expiration_date: '23/07/2023'
-        },
-        {
-            app_name: 'Diabetter plugin',
-            token_value: 'ab6f89ef7c15d',
-            rights: {profile: true, stats: true, goals: false, samples: false},
-            creation_date: '23/07/2023',
-            expiration_date: '23/07/2023'
-        },{
-            app_name: 'Diabetter plugin',
-            token_value: 'ab6f89ef7c15d',
-            rights: {profile: true, stats: true, goals: false, samples: false},
-            creation_date: '23/07/2023',
-            expiration_date: '23/07/2023'
-        },{
-            app_name: 'Diabetter plugin',
-            token_value: 'ab6f89ef7c15d',
-            rights: {profile: true, stats: true, goals: false, samples: false},
-            creation_date: '23/07/2023',
-            expiration_date: '23/07/2023'
-        },
-    ]
+export async function fetchTokens(token: string): Promise<PersonalAccessToken[]> {
+    const res = await fetch(`http://localhost:8000/tokens`, {headers: {"Authorization": `Bearer ${token}`}});
+    return await res.json();
 }
 
 export async function fetchAverageDaySamples(fetchParams: AvgTSParams & {username: string, token: string}): Promise<AverageTimeSample[]> {
