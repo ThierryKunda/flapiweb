@@ -49,10 +49,14 @@ const SignIn: Component<{setSignIn: Setter<boolean>, toNextPage: (validInputs: b
         navigate("/summary")
     }
     const handleSubmit: SubmitHandler<SignInForm> = (values, event) => {
-        // Authentificate user using API - TODO
-        event.preventDefault();
-        console.log(`Logged in : username : ${values.username} | password : ${values.password}`);
-        
+        // Authentificate user using API
+        const authSuccess = authentificate?.({username: values.username, password: values.password});
+        authSuccess?.then((v) => {
+            if (v) {
+                console.log(session.access_token);
+                navigate("/summary")
+            }
+        }).catch((e) => console.log(e))
     }
     return (
         <Form class={styles.signForm} onSubmit={handleSubmit}>
