@@ -5,8 +5,10 @@ import { Chart, Title, Tooltip, Legend, Colors } from 'chart.js';
 import { Line } from "solid-chartjs";
 import Loader from "./Loader";
 import { compareHoursAsString } from "../utils/other";
+import { useSession } from "../contexts";
 
 export const SamplesChart: Component<SamplesChartProps> = (props) => {
+  const [session] = useSession();
   onMount(() => {
     Chart.register(Title, Tooltip, Legend, Colors)
   })
