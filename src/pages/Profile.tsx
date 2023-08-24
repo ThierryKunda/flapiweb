@@ -123,7 +123,7 @@ const Token: Component<{data: PersonalAccessToken}> = (props) => {
     <h3>{props.data.app_name}</h3>
     <div>
       <span>Token value - <em>{props.data.token_value}</em></span>
-      <span>Rights - <em>{props.data.token_value}</em></span>
+      <span> Rights - {rightsAssigned.join(", ")}<em></em></span>
       <span>Creation date - <em>{props.data.creation_date}</em></span>
       <span>Expiration date - <em>{props.data.expiration_date}</em></span>
     </div>
