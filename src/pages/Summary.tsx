@@ -9,10 +9,18 @@ import { fetchAverageDaySamples, fetchLatestSamples, fetchStats, sendFile } from
 import DataTable from "../components/DataTable";
 import Stats from "../components/Stats";
 import DragAndDrop from "../components/DragAndDrop";
+import { useNavigate } from "@solidjs/router";
+import { useSession } from "../contexts";
 
 const Summary: Component = (props) => {
     const [drawerVisible, setDrawerVisible] = createSignal(false);
 
+    // Go to login page if user not authentified
+    const navigate = useNavigate();
+    const [session] = useSession();
+    if (!session.authorized) {
+        navigate("/")
+    }
   return <div class={styles.summaryPage}>
     <Drawer visible={drawerVisible()} />
     <div class={styles.mainContent}>
