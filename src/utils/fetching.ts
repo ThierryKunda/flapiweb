@@ -102,10 +102,19 @@ export async function fetchLatestSamples(fetchParams: {username: string, token: 
     return await res.json();
 }
 
-export async function fetchTriggerPasswordReset(confirm: boolean) {
-    if (confirm) {
-        await new Promise((r) => setTimeout(r, 2000));
-        return {sent_from: "Windows Mozilla", received_at: "14/08/2023-16:21"};
+export async function fetchTriggerPasswordReset(fetchParams: {confirm: boolean, emailOrUsername: string}) {
+    if (fetchParams.confirm) {
+        const res = await fetch(`http://localhost:8000/submit_password_change`, {
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            email_or_username: fetchParams.emailOrUsername
+        })
+    })
+    return await res.json();
     }
     return null;
 }
