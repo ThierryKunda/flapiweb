@@ -4,7 +4,6 @@ import { useNavigate } from "@solidjs/router";
 
 import { SignInForm, SignUpForm } from "../types_definition/forms";
 import styles from "../style/HomePage.module.css";
-import { storeApiToken } from "../utils/session";
 import { useSession } from "../contexts";
 
 const HomePage: Component = () => {
