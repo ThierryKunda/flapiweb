@@ -10,8 +10,15 @@ import Header from "../components/Header";
 
 import styles from "../style/Profile.module.css";
 import { NewPasswordForm } from "../types_definition/forms";
+import { useSession } from "../contexts";
+import { useNavigate } from "@solidjs/router";
 
 const Profile: Component = () => {
+  const [session, {quitSession}] = useSession();
+  const navigate = useNavigate();
+  if (!session.authorized) {
+    navigate("/");
+  }
   const [drawerVisible, setDrawerVisible] = createSignal(false);
   return <div class={styles.profilePage}>
     <Header setDrawerVisible={setDrawerVisible} />
@@ -21,12 +28,16 @@ const Profile: Component = () => {
       <PersonalInformation />
     	<Tokens />
     </main>
-    <button>Log out</button>
+    <button onClick={() => {
+      quitSession?.();
+      navigate("/");
+    }}>Log out</button>
   </div>;
 };
 
 const PersonalInformation: Component = () => {
-    const [userInfo] = createResource(fetchUserPersonalInfo);
+  const [session] = useSession();
+  const [userInfo] = createResource(session.access_token, fetchUserPersonalInfo);
   return <section class={styles.personalInfo}>
     <h2>Personal information</h2>
     <div>
@@ -96,7 +107,8 @@ const Tokens: Component = () => {
 }
 
 const TokensList: Component = () => {
-  const [tokens_list] = createResource(fetchTokens);
+  const [session] = useSession();
+  const [tokens_list] = createResource(session.access_token, fetchTokens);
   return <div class={styles.tokensList}>
     <Show when={tokens_list()} fallback={<Loader loaderType="circle" size="medium" />}>
       <For each={tokens_list()}>{(tk) =>
