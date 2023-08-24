@@ -1,7 +1,7 @@
 .profilePage {
   height: 100%;
   width: 100%;
-  padding: 0 80px;
+  /* padding: 0 0px; */
   overflow: hidden;
   position: relative;
 }
@@ -57,6 +57,7 @@
 
 .triggerResetPassword > button {
   height: 50px;
+  width: 300px;
   padding: 0 80px;
   border-radius: 50px;
   background-color: var(--primary-user);
@@ -132,15 +133,15 @@
 }
 
 .token {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: space-between;
-	min-height: 120px;
-  width: 500px;
+  justify-content: space-between; */
+	min-height: 150px;
+  width: 700px;
   overflow: hidden;
   border: 2px solid black;
   border-radius: 8px;
-  padding: 10px;
+  padding: 14px;
   margin: 25px 0;
 }
 
@@ -156,7 +157,7 @@
 
 .token span {
 	display: block;
-  font-size: 14px;
+  font-size: 20px;
 }
 
 .token em {
