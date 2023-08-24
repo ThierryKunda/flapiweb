@@ -16,8 +16,8 @@ export const SamplesChart: Component<SamplesChartProps> = (props) => {
     error: 60
   })
   const [averageSamples] = createResource(fetchParams, props.fetching);
-  const hours = () => averageSamples()?.map((s) => s.hour);
-  const values = () => averageSamples()?.map((s) => s.average_value)
+  const hours = () => averageSamples()?.map((s) => s.hour.slice(0, -3));
+  const values = () => averageSamples()?.map((s) => s.average_value);
   const data = () => ({
     labels: hours(),
     datasets: [
