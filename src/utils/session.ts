@@ -4,7 +4,6 @@ export async function fetchApiToken(reqParams: {
     username: string,
     password: string
 }) {
-    console.log(reqParams);
     const urlParams = new URLSearchParams({
         "username": reqParams.username,
         "password": reqParams.password,
@@ -27,9 +26,13 @@ export async function storeApiToken(reqParams: {
 }|null) {
     if (reqParams) {
         const tokenInformation = await fetchApiToken(reqParams);
-        console.log(tokenInformation);
         sessionStorage.setItem('apiToken', JSON.stringify(tokenInformation));
         return tokenInformation;
     }
     return null;
+}
+
+export function getTokenValue() {
+    const tokenInformation = sessionStorage.getItem("apiToken") as TokenInformation | null;
+    return tokenInformation?.access_token ?? null;
 }
