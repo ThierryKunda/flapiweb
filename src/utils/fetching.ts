@@ -10,11 +10,6 @@ export async function fetchFeatures(resource: APIResource): Promise<FetchFeature
     return (await fetch(`http://localhost:8000/doc/resource/${resource.resource_name}/features`)).json();
 }
 
-export async function fetchLatestAnnouncement() {
-    await new Promise((r) => setTimeout(r, Math.random() * 2000));
-    return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Facilisis leo vel fringilla est ullamcorper eget nulla. Id volutpat lacus laoreet non. Aliquet risus feugiat in ante metus dictum at tempor. Ultricies leo integer malesuada nunc. Mauris a diam maecenas sed enim ut sem. Leo vel fringilla est ullamcorper eget nulla facilisi. Felis eget velit aliquet sagittis id consectetur purus ut. Eu scelerisque felis imperdiet proin fermentum leo vel orci. Arcu vitae elementum curabitur vitae nunc."
-}
-
 export async function fetchStats(): Promise<Stats> {
     await new Promise((r) => setTimeout(r, 2000));
     return {
