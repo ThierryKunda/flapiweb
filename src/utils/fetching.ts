@@ -43,12 +43,6 @@ export async function fetchSecretSignatures() {
 }
 
 export async function fetchResourcesData(): Promise<ResourcesData[]> {
-    // await new Promise((r) => setTimeout(r, 5000));
-    // return [
-    //     {id: 1, resource_name: "profile", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", admin_privilege: false},
-    //     {id: 2, resource_name: "samples", description: null, admin_privilege: false},
-    //     {id: 3, resource_name: "statistics", description: null, admin_privilege: false}
-    // ]
     return (await fetch('http://127.0.0.1:8000/doc/resources_data')).json();
 }
 
@@ -150,12 +144,22 @@ export async function fetchTokens(): Promise<PersonalAccessToken[]> {
     ]
 }
 
-export async function fetchAverageDaySamples(fetchParams: AvgTSParams): Promise<AverageTimeSample[]> {
-    await new Promise((r) => setTimeout(r, 2000));
-    return fetchParams.hours.map((h) => ({
-        hour: h,
-        average_value: Math.random() * (200 - 70) + 70
-    }))
+export async function fetchAverageDaySamples(fetchParams: AvgTSParams & {username: string, token: string}): Promise<AverageTimeSample[]> {
+    const body = JSON.stringify({
+        hours: fetchParams.hours,
+        error: fetchParams.error
+    });
+
+    const res = await fetch(`http://localhost:8000/user/${fetchParams.username}/samples/average_day`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": `Bearer ${fetchParams.token}`,
+        },
+        body
+    })
+    return await res.json();
 }
 
 export async function fetchLatestSamples() {
