@@ -53,14 +53,12 @@ export type UserInfo = Record<string, string|string[]>;
 
 export interface newPAT {
     app_name: string,
-    token_value: string,
-    rights: {
-        profile: boolean,
-        samples: boolean,
-        goals: boolean,
-        stats: boolean
-    },
     expiration_date: string,
+    token_value: string,
+    profile_right: boolean,
+    samples_right: boolean,
+    goals_right: boolean,
+    stats_right: boolean,
 }
 
 export interface PersonalAccessToken extends newPAT {
