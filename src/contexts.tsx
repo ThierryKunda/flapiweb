@@ -50,13 +50,14 @@ export const SessionProvider: FlowComponent<{session: OptionalTokenInformation &
         setState("access_token", tk.access_token);
         setState("token_type", tk.token_type);
         setState("authorized", true);
-        sessionStorage.removeItem("apiToken");
+        localStorage.removeItem("apiToken");
       },
       quitSession() {
         setState("username", undefined);
         setState("authorized", false);
         setState("access_token", undefined);
         setState("token_type", undefined);
+        localStorage.removeItem("apiToken");
       },
     }
   ];
