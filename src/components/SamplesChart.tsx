@@ -10,7 +10,7 @@ export const SamplesChart: Component<SamplesChartProps> = (props) => {
   onMount(() => {
     Chart.register(Title, Tooltip, Legend, Colors)
   })
-  const [dayTimes, setDayTimes] = createSignal(["00:00", "08:00", "12:00", "16:00", "20:00"]);
+  const [dayTimes, setDayTimes] = createSignal(["00:00", "06:00", "08:00", "10:00", "12:00", "14:00", "16:00", "18:00", "20:00", "22:00"]);
   const fetchParams = () => ({
     username: session.username,
     token: session.access_token,
