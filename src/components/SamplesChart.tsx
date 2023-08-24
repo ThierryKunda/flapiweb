@@ -1,4 +1,4 @@
-import { Component, For, Show, createResource, createSignal, onMount  } from "solid-js";
+import { Component, For, Match, Switch, createResource, createSignal, onMount  } from "solid-js";
 import { SamplesChartProps } from "../types_definition/props";
 import { validateTimeFormat } from "../utils/validation";
 import { Chart, Title, Tooltip, Legend, Colors } from 'chart.js';
@@ -43,12 +43,17 @@ export const SamplesChart: Component<SamplesChartProps> = (props) => {
           addDayTimes={(t: string) => {if (validateTimeFormat(t)) setDayTimes(prev => [...prev, t].sort((h1, h2) => compareHoursAsString(h1, h2)))}}
           removeDayTimes={(t: string) => setDayTimes(prev => prev.filter((v => v !== t)))}  
         />
-        <Show when={averageSamples()}>
-          <Line data={data()} options={charOptions} width={500} height={400} />
-        </Show>
-        <Show when={averageSamples.loading}>
+        <Switch>
+          <Match when={averageSamples.state === "ready"}>
+            <Line data={data()} options={charOptions} width={500} height={400} />
+          </Match>
+          <Match when={averageSamples.state === "pending"}>
           <Loader loaderType="circle" size="medium" />
-        </Show>
+          </Match>
+          <Match when={averageSamples.state === "errored"}>
+            <p>Error while fetching data...🥲</p>
+          </Match>
+        </Switch>
     </div>
   </section>;
 };
