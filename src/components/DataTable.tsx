@@ -12,7 +12,7 @@ const DataTable: DataTableComponent = (props) => {
   const [currentPage, setCurrentPage] = createSignal(0);
   
   const data = props.fetching.map((fetcher) => {
-    const [d] = createResource(fetcher);
+    const [d] = createResource(getSession, fetcher);
     return d;
   });
 
