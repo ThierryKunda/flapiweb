@@ -1,4 +1,4 @@
-import { Component, For, Show, Suspense, createResource, createSignal, onMount,  } from "solid-js";
+import { Component, For, Show, createResource, createSignal, onMount  } from "solid-js";
 import { SamplesChartProps } from "../types_definition/props";
 import { validateTimeFormat } from "../utils/validation";
 import { Chart, Title, Tooltip, Legend, Colors } from 'chart.js';
