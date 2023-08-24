@@ -12,6 +12,8 @@ export const SamplesChart: Component<SamplesChartProps> = (props) => {
   })
   const [dayTimes, setDayTimes] = createSignal(["00:00", "08:00", "12:00", "16:00", "20:00"]);
   const fetchParams = () => ({
+    username: session.username,
+    token: session.access_token,
     hours: dayTimes(),
     error: 60
   })
