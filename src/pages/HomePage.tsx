@@ -42,6 +42,12 @@ const SignForm: Component = () => {
 
 const SignIn: Component<{setSignIn: Setter<boolean>, toNextPage: (validInputs: boolean) => void}> = (props) => {
     const [signInForm, {Form, Field, FieldArray}] = createForm<SignInForm>();
+    const [session, {authentificate}] = useSession();
+    // If user already authentified => redirect user to "/summary" page
+    const navigate = useNavigate();
+    if (session.authorized) {
+        navigate("/summary")
+    }
     const handleSubmit: SubmitHandler<SignInForm> = (values, event) => {
         // Authentificate user using API - TODO
         event.preventDefault();
