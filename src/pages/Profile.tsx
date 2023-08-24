@@ -107,6 +107,12 @@ const TokensList: Component = () => {
 }
 
 const Token: Component<{data: PersonalAccessToken}> = (props) => {
+  const rightsAssigned: string[] = [];
+  Object.entries(props.data.rights).forEach((pair) => {
+    if (pair[1]) {
+      rightsAssigned.push(pair[0]);
+    }
+  });
   return <div class={styles.token}>
     <h3>{props.data.app_name}</h3>
     <div>
