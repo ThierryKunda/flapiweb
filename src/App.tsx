@@ -12,6 +12,12 @@ import Profile from './pages/Profile';
 import { SessionProvider } from './contexts';
 
 const App: Component = () => {
+  const session = getApiToken() ? {...getApiToken()!, authorized: true} : {
+    username: undefined,
+    authorized: false,
+    access_token: undefined,
+    token_type: undefined
+  };
   return (
     
       <SessionProvider session={{username: undefined, authorized: false, access_token: undefined, token_type: undefined}}>

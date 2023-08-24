@@ -2,7 +2,7 @@ import { createContext, createResource, useContext } from "solid-js";
 import { FlowComponent, JSX } from "solid-js";
 import { TokenInformation } from "./types_definition/data";
 import { createStore } from "solid-js/store";
-import { fetchApiToken } from "./utils/session";
+import { fetchApiToken, storeApiToken } from "./utils/session";
 
 interface OptionalTokenInformation {
   access_token: string | undefined,
@@ -35,6 +35,11 @@ export const SessionProvider: FlowComponent<{session: OptionalTokenInformation &
           setState("access_token", access_token);
           setState("token_type", token_type);
           setState("authorized", true);
+          storeApiToken({
+            username: reqParams.username,
+            access_token,
+            token_type
+          });
         } catch (e) {
           return false;
         }
@@ -45,6 +50,7 @@ export const SessionProvider: FlowComponent<{session: OptionalTokenInformation &
         setState("access_token", tk.access_token);
         setState("token_type", tk.token_type);
         setState("authorized", true);
+        sessionStorage.removeItem("apiToken");
       },
       quitSession() {
         setState("username", undefined);

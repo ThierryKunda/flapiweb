@@ -20,19 +20,12 @@ export async function fetchApiToken(reqParams: {
     })).json() as TokenInformation;
 }
 
-export async function storeApiToken(reqParams: {
-    username: string,
-    password: string
-}|null) {
-    if (reqParams) {
-        const tokenInformation = await fetchApiToken(reqParams);
-        sessionStorage.setItem('apiToken', JSON.stringify(tokenInformation));
-        return tokenInformation;
-    }
-    return null;
+export async function storeApiToken(tokenInformation: TokenInformation & {username: string}) {
+    localStorage.setItem('apiToken', JSON.stringify(tokenInformation));
+    return tokenInformation;
 }
 
-export function getTokenValue() {
-    const tokenInformation = sessionStorage.getItem("apiToken") as TokenInformation | null;
-    return tokenInformation?.access_token ?? null;
+export function getApiToken() {
+    const tokenInformation = localStorage.getItem("apiToken") as (TokenInformation & {username: string}) | null;
+    return tokenInformation ?? null;
 }
