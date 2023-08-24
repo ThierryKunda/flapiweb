@@ -28,11 +28,15 @@ export const SessionProvider: FlowComponent<{session: OptionalTokenInformation &
     state,
     {
       async authentificate(reqParams: {username: string, password: string}) {
+        try {
           const {access_token, token_type} = await fetchApiToken(reqParams);
           setState("username", reqParams.username);
-        setState("access_token", access_token);
-        setState("token_type", token_type);
-        setState("authorized", true);
+          setState("access_token", access_token);
+          setState("token_type", token_type);
+          setState("authorized", true);
+        } catch (e) {
+          return false;
+        }
         return true;
       },
       resetSession(tk: TokenInformation) {
