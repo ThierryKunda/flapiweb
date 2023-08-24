@@ -3,8 +3,11 @@ import { RecordComponent, DataTableComponent, TableHeaderProps, PageNavigationPr
 
 import styles from '../style/Administration.module.css';
 import { removeNewLineSpace } from "../utils/other";
+import { useSession } from "../contexts";
 
 const DataTable: DataTableComponent = (props) => {
+  const [session] = useSession();
+  const getSession = () => ({username: session.username, token: session.access_token})
   const [tabSelected, setTabSelected] = createSignal(0);
   const [currentPage, setCurrentPage] = createSignal(0);
   
