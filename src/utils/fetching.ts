@@ -135,15 +135,11 @@ export async function fetchAverageDaySamples(fetchParams: AvgTSParams & {usernam
     return await res.json();
 }
 
-export async function fetchLatestSamples() {
-    await new Promise((r) => setTimeout(r, 2000));
-    return [
-        {device: "LibreLink", value: 90, date: "09/07/2023-12:47"},
-        {device: "FLibre2", value: 100, date: "12/10/2023-19:33"},
-        {device: "FLibre2", value: 120, date: "29/01/2024-09:21"},
-        {device: "FLibre2", value: 70, date: "03/02/2024-15:43"},
-        {device: "FLibre2", value: 120, date: "14/03/2024-06:18"},
-    ]
+export async function fetchLatestSamples(fetchParams: {username: string, token: string}) {
+    const res = await fetch(`http://localhost:8000/user/${fetchParams.username}/samples/latest`, {
+        headers: {"Authorization": `Bearer ${fetchParams.token}`},
+    })
+    return await res.json();
 }
 
 export async function fetchTriggerPasswordReset(confirm: boolean) {
