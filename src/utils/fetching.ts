@@ -41,28 +41,6 @@ export async function fetchResourcesData(): Promise<ResourcesData[]> {
     return (await fetch('http://127.0.0.1:8000/doc/resources_data')).json();
 }
 
-export async function fetchDevDB(): Promise<any[]> {
-    await new Promise((r) => setTimeout(r, 5000));
-    return [
-        {id: 1, name: 'Alpha version of API', created_at: '03/07/2023-11:06', last_modification: '19/07/2023-14:38', currently_used: false},
-        {id: 2, name: 'V1_populated', created_at: '03/07/2023-11:06', last_modification: '19/07/2023-14:38', currently_used: false},
-        {id: 3, name: 'V1.1__added_signatures_table', created_at: '03/07/2023-11:06', last_modification: '19/07/2023-14:38', currently_used: false},
-        {id: 4, name: 'V1.2__added_available_column', created_at: '03/07/2023-11:06', last_modification: '19/07/2023-14:38', currently_used: false},
-        {id: 5, name: 'V1.2__added_annoucements_table', created_at: '03/07/2023-11:06', last_modification: '19/07/2023-14:38', currently_used: false},
-        {id: 6, name: 'V2.0__populated', created_at: '03/07/2023-11:06', last_modification: '19/07/2023-14:38', currently_used: true},
-    ]
-}
-
-export async function fetchProdDB(): Promise<any[]> {
-    await new Promise((r) => setTimeout(r, 5000));
-    return [
-        {id: 1, name: 'V1', created_at: '03/07/2023-11:06', last_modification: '19/07/2023-14:38', currently_used: false},
-        {id: 1, name: 'V1.1', created_at: '03/07/2023-11:06', last_modification: '19/07/2023-14:38', currently_used: false},
-        {id: 1, name: 'V1.2', created_at: '03/07/2023-11:06', last_modification: '19/07/2023-14:38', currently_used: false},
-        {id: 1, name: 'V2.0', created_at: '03/07/2023-11:06', last_modification: '19/07/2023-14:38', currently_used: true},
-    ]
-}
-
 export async function fetchUserPersonalInfo(): Promise<UserInfo> {
     await new Promise((r) => setTimeout(r, 3000));
     return {
