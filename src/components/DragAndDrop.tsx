@@ -1,6 +1,7 @@
 import { Component, Match, Switch, createResource, createSignal, JSX } from "solid-js";
 import { DragAndDropProps } from "../types_definition/props";
 import Loader from "./Loader";
+import { useSession } from "../contexts";
 
 type SubmitEvent = MouseEvent & {
   currentTarget: HTMLButtonElement;
@@ -13,11 +14,12 @@ type FileInputEvent = InputEvent & {
 }
 
 const DragAndDrop: Component<DragAndDropProps> = (props) => {
+  const [session] = useSession();
   const [droppedFile, setDroppedFile] = createSignal<File|null>(null);
   const [confirm, setConfirm] = createSignal(false);
   const params = () => ({
-    username: '',
-    apiToken: '',
+    username: session.username,
+    apiToken: session.access_token,
     confirm: confirm(),
     file: droppedFile()
   })
