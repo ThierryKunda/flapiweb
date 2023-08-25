@@ -79,7 +79,7 @@ export interface Stats {
     mean: number,
     median: number,
     variance: number,
-    std_dev: number
+    standard_deviation: number
 }
 
 export interface FileUploadParams {
