@@ -50,8 +50,13 @@ const PersonalInformation: Component = () => {
 
 
 const NewPassword: Component = (props) => {
+  const [session] = useSession();
   const [triggered, setTriggered] = createSignal(false);
-  const [resetResponse] = createResource(triggered, fetchTriggerPasswordReset);
+  const reqParams = () => ({
+    confirm: triggered(),
+    emailOrUsername: session.username!
+  })
+  const [resetResponse] = createResource(reqParams, fetchTriggerPasswordReset);
   return <div class={styles.triggerResetPassword}>
     <button onClick={() => setTriggered(true)}>Reset password</button>
     <Show when={triggered()}>
