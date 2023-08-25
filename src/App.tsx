@@ -16,7 +16,7 @@ const App: Component = () => {
   const session = getApiToken() ? {...getApiToken()!, authorized: true} : {
     username: undefined,
     authorized: false,
-    access_token: "ok",
+    access_token: undefined,
     token_type: undefined
   };
   return (
