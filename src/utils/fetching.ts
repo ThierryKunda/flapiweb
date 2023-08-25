@@ -10,14 +10,10 @@ export async function fetchFeatures(resource: APIResource): Promise<FetchFeature
     return (await fetch(`http://localhost:8000/doc/resource/${resource.resource_name}/features`)).json();
 }
 
-export async function fetchStats(): Promise<Stats> {
-    await new Promise((r) => setTimeout(r, 2000));
-    return {
-        mean: Math.random() * 80,
-        median: Math.random() * 80,
-        variance: Math.random() * 20,
-        std_dev: Math.random() * 10
-    }
+export async function fetchStats(fetchParams: {username: string, token: string}): Promise<Stats> {
+    const {username, token} = fetchParams;
+    const res = await fetch(`http://localhost:8000/user/${username}/stats`, {headers: {"Authorization": `Bearer ${token}`}});
+    return await res.json();
 }
 
 export async function fetchAPIDocumentationInfo(): Promise<APIDocumentationInfo> {
