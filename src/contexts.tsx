@@ -1,4 +1,4 @@
-import { createContext, createResource, useContext } from "solid-js";
+import { createContext, useContext } from "solid-js";
 import { FlowComponent, JSX } from "solid-js";
 import { TokenInformation } from "./types_definition/data";
 import { createStore } from "solid-js/store";
