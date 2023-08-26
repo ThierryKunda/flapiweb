@@ -42,29 +42,46 @@ export async function fetchUserPersonalInfo(token: string): Promise<UserInfo> {
     return await res.json() as UserInfo;
 }
 
+export async function fetchPasswordRequestData(changeReqId: string) {
+    const urlParams = new URLSearchParams({
+        "change_req_id": changeReqId,
+    });
+    const res = await fetch(`http://localhost:8000/new_password_request?${urlParams.toString()}`);
+    return await res.json();
+}
 
-
-export async function submitNewPasswordRequest(email?: string) {
-    if (email) {
-
-    }
-    await new Promise((r) => setTimeout(r, 2000));
-    return {
-        isSuccess: Math.random() < 0.5,
-        description: "Here is some description 😎",
-    }
+export async function submitNewPasswordRequest(usernameOrEmail?: string) {
+    const res = await fetch(`http://localhost:8000/submit_password_change`, {
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({email_or_username: usernameOrEmail}),
+    });
+    return await res.json();
 }
 
 export async function setNewPassword(data: {
-    email: string,
+    changeReqId: string,
     oldPassword?: string
     newPassword: string,
     confirmNewPassword: string
 }) {
-    await new Promise((r) => setTimeout(r, 2000));
+    if (data.newPassword === data.confirmNewPassword) {
+        const res = await fetch(`http://localhost:8000/new_password/${data.changeReqId}`, {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({new_password: data.newPassword}),
+        });
+        return await res.json();
+    }
     return {
-        isSuccess: Math.random() < 0.5,
-        description: "Here is some description 😎",
+        is_success: false,
+        description: "New password and confirm password does not match.",
     }
 }
 
