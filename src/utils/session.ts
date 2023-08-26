@@ -26,6 +26,6 @@ export async function storeApiToken(tokenInformation: TokenInformation & {userna
 }
 
 export function getApiToken() {
-    const tokenInformation = localStorage.getItem("apiToken") as (TokenInformation & {username: string}) | null;
-    return tokenInformation ?? null;
+    const sessionValue = localStorage.getItem("apiToken");
+    return sessionValue ? JSON.parse(sessionValue) as (TokenInformation & {username: string}) : null;
 }
