@@ -13,7 +13,12 @@ import { SessionProvider } from './contexts';
 import { getApiToken } from './utils/session';
 
 const App: Component = () => {
-  const session = getApiToken() ? {...getApiToken()!, authorized: true} : {
+  const session: {
+    authorized: boolean,
+    username?: string,
+    access_token?: string,
+    token_type?: string
+  } = getApiToken() ? {...getApiToken()!, authorized: true} : {
     username: undefined,
     authorized: false,
     access_token: undefined,
