@@ -17,7 +17,7 @@ export async function fetchApiToken(reqParams: {
             "Content-Type": "application/x-www-form-urlencoded"
         },
         body: urlParams.toString(), 
-    })).json() as TokenInformation;
+    })).json();
 }
 
 export async function storeApiToken(tokenInformation: TokenInformation & {username: string}) {
