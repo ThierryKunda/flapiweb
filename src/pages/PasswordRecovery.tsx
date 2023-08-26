@@ -1,31 +1,26 @@
 import { Component, Show, createSignal } from "solid-js";
 import { StatusNotificationProps } from "../types_definition/props";
 import { submitNewPasswordRequest } from "../utils/fetching"
-import { validateEmail } from "../utils/validation";
 import Loader from "../components/Loader";
 
 import styles from "../style/PasswordRecovery.module.css";
 
 const PasswordRecovery: Component = () => {
   const [notificationOpened, setNotificationOpened] = createSignal(false);
-  const [emailValue, setEmailValue] = createSignal<string|undefined>();
+  const [usernameValue, setUsernameValue] = createSignal<string|undefined>();
   const [waitingResponse, setWaitingResponse] = createSignal(false);
   const [submitResult, setSubmitResult] = createSignal<{
-    isSuccess: boolean,
+    is_success: boolean,
     description: string,
   }| undefined>();
-  const handleSubmitEmail = async (ev: MouseEvent) => {
+  const handleSubmitUsername = async (ev: MouseEvent) => {
     ev.preventDefault();
-    if (validateEmail(emailValue())) {
-      console.log("Email validated !");
-      setWaitingResponse(true);
-      var reqRes = await submitNewPasswordRequest(emailValue());
-      setWaitingResponse(false);
-      setNotificationOpened(reqRes !== undefined);
-      setSubmitResult(reqRes);
-    } else {
-      console.log("Email invalid...");
-    }
+    console.log("Username validated !");
+    setWaitingResponse(true);
+    var reqRes = await submitNewPasswordRequest(usernameValue());
+    setWaitingResponse(false);
+    setNotificationOpened(reqRes !== undefined);
+    setSubmitResult(reqRes);
   };
   return <div class={styles.page}>
     <h1>Password recovery</h1>
@@ -33,17 +28,17 @@ const PasswordRecovery: Component = () => {
         <Loader loaderType="circle" />
       </Show>
     <form class={styles.resetForm}>
-      <div class={styles.emailField}>
-        <label for="email">Email</label>
-        <input onInput={(ev) => setEmailValue(ev.target.value)} id="email" type="email" placeholder="Enter your email" />
+      <div class={styles.usernameField}>
+        <label for="username">Username</label>
+        <input onInput={(ev) => setUsernameValue(ev.target.value)} id="username" type="username" placeholder="Enter your username" />
       </div>
-      <button onClick={handleSubmitEmail}>Reset password</button>
+      <button onClick={handleSubmitUsername}>Reset password</button>
     </form>
     <StatusNotification
       opened={notificationOpened()}
       setOpen={setNotificationOpened}
-      isSuccess={submitResult()?.isSuccess}
-      description="Check your email inbox to define a new one."
+      isSuccess={submitResult()?.is_success}
+      description={submitResult()?.description}
     />
   </div>;
 };
