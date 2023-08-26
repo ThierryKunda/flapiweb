@@ -5,14 +5,16 @@ import Search from "../components/Search";
 import DataTable from "../components/DataTable";
 import Loader from "../components/Loader";
 
-import { fetchResourcesData, fetchSecretSignatures, fetchStats } from "../utils/fetching";
+import { fetchAllUsersStats, fetchResourcesData, fetchSecretSignatures, fetchStats } from "../utils/fetching";
 import styles from "../style/Administration.module.css";
 import Stats from "../components/Stats";
+import { useSession } from "../contexts";
 
 const Administration: Component = () => {
     const [drawerVisible, setDrawerVisible] = createSignal(false);
     const [searchModalVisible, setSearchModalVisible] = createSignal(false);
     const [searchInput, setSearchInput] = createSignal('');
+    const [session] = useSession();
 
     return <SuspenseList revealOrder="forwards">
         <div class={styles.administrationPage}>
@@ -24,7 +26,7 @@ const Administration: Component = () => {
                 setSearchInput={setSearchInput}
                 previousInput={searchInput()}
             />
-            <Stats fetching={fetchStats} />
+            <Stats fetching={async () => fetchAllUsersStats(session.access_token!)} />
             <DataTable
                 tableTitle="Secret signatures"
                 fetching={[fetchSecretSignatures]}

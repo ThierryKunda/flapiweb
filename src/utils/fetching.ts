@@ -16,6 +16,12 @@ export async function fetchStats(fetchParams: {username: string, token: string})
     return await res.json();
 }
 
+export async function fetchAllUsersStats(token: string) {
+    const res = await fetch(`http://localhost:8000/users/stats`, {headers: {"Authorization": `Bearer ${token}`}});
+    return await res.json();
+    
+}
+
 export async function fetchAPIDocumentationInfo(): Promise<APIDocumentationInfo> {
     return (await fetch('http://127.0.0.1:8000/doc/general_information')).json();
 }
