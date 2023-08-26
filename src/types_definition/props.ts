@@ -63,7 +63,7 @@ export interface PageNavigationProps {
 
 export interface StatusNotificationProps {
     isSuccess?: boolean,
-    description: string,
+    description?: string,
     opened: boolean,
     setOpen: Setter<boolean>
 }
