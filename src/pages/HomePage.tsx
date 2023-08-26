@@ -1,10 +1,11 @@
-import { Component, createSignal, Setter, Show } from "solid-js";
-import { createForm, Field, SubmitHandler } from "@modular-forms/solid";
+import { Component, createResource, createSignal, Match, Setter, Show, Switch } from "solid-js";
+import { createForm, Field, setResponse, SubmitHandler } from "@modular-forms/solid";
 import { useNavigate } from "@solidjs/router";
 
 import { SignInForm, SignUpForm } from "../types_definition/forms";
 import styles from "../style/HomePage.module.css";
 import { useSession } from "../contexts";
+import Loader from "../components/Loader";
 
 const HomePage: Component = () => {
     const navigate = useNavigate();
@@ -49,16 +50,19 @@ const SignForm: Component = () => {
 const SignIn: Component<{setSignIn: Setter<boolean>, toNextPage: (validInputs: boolean) => void}> = (props) => {
     const [signInForm, {Form, Field, FieldArray}] = createForm<SignInForm>();
     const [session, {authentificate}] = useSession();
+    const [waitingResponse, setWaitingResponse] = createSignal({waiting: false, failed: false});
     const navigate = useNavigate();
     const handleSubmit: SubmitHandler<SignInForm> = (values, event) => {
+        setWaitingResponse({waiting: true, failed: false});
         // Authentificate user using API
         const authSuccess = authentificate?.({username: values.username, password: values.password});
         authSuccess?.then((v) => {
+            setWaitingResponse({waiting: false, failed: !v});
             if (v) {
-                console.log(session.access_token);
+                console.log(v);
                 navigate("/summary")
             }
-        }).catch((e) => console.log(e))
+        }).catch((e) => setWaitingResponse({waiting: false, failed: true}))
     }
     return (
         <Form class={styles.signForm} onSubmit={handleSubmit}>
@@ -100,6 +104,14 @@ const SignIn: Component<{setSignIn: Setter<boolean>, toNextPage: (validInputs: b
                     props.setSignIn(false)
                 }}>Sign up</a></p>
             </div>
+            <Switch>
+                <Match when={waitingResponse().waiting}>
+                    <Loader loaderType="circle" size="small" />
+                </Match>
+                <Match when={!waitingResponse().waiting && waitingResponse().failed}>
+                    <p>Incorrect username and/or password.</p>
+                </Match>
+            </Switch>
         </Form>
     );
 }
