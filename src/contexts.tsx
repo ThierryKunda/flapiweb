@@ -29,8 +29,12 @@ export const SessionProvider: FlowComponent<{session: OptionalTokenInformation &
     state,
     {
       async authentificate(reqParams: {username: string, password: string}) {
+        const res = await fetchApiToken(reqParams);
         try {
-          const {access_token, token_type} = await fetchApiToken(reqParams);
+          if ("detail" in res) {
+            return false;
+          }
+          const {access_token, token_type} = res;
           setState("username", reqParams.username);
           setState("access_token", access_token);
           setState("token_type", token_type);
@@ -40,10 +44,10 @@ export const SessionProvider: FlowComponent<{session: OptionalTokenInformation &
             access_token,
             token_type
           });
+          return true;
         } catch (e) {
           return false;
         }
-        return true;
       },
       resetSession(tk: TokenInformation) {
         setState("username", undefined);
