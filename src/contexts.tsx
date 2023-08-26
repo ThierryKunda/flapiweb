@@ -4,16 +4,11 @@ import { TokenInformation } from "./types_definition/data";
 import { createStore } from "solid-js/store";
 import { fetchApiToken, storeApiToken } from "./utils/session";
 
-interface OptionalTokenInformation {
-  access_token: string | undefined,
-  token_type: string | undefined,
-}
-
 type SessionCtxType = [
   {
     authorized: boolean,
-    username: string | undefined,
-  } & OptionalTokenInformation,
+    username?: string,
+  } & Partial<TokenInformation>,
   {
     authentificate?: (reqParams: {username: string, password: string}) => Promise<boolean>, 
     resetSession?: (tk: TokenInformation) => void,
@@ -23,7 +18,7 @@ type SessionCtxType = [
 
 export const SessionContext = createContext<SessionCtxType>([{username: undefined, authorized: false, access_token: undefined, token_type: undefined}, {}]);
 
-export const SessionProvider: FlowComponent<{session: OptionalTokenInformation & {authorized: boolean, username: string | undefined}}, JSX.Element> = (props) => {
+export const SessionProvider: FlowComponent<{session: Partial<TokenInformation> & {authorized: boolean, username?: string}}, JSX.Element> = (props) => {
   const [state, setState] = createStore(props.session);
   const session: SessionCtxType = [
     state,
