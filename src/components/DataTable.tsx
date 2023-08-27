@@ -11,7 +11,7 @@ const DataTable: DataTableComponent = (props) => {
   const [currentPage, setCurrentPage] = createSignal(0);
   
   const data = props.fetching.map((fetcher) => {
-    const [d] = createResource(session.access_token, fetcher);
+    const [d] = createResource({access_token: session.access_token, username: session.username}, fetcher);
     return d;
   });
 

@@ -29,13 +29,13 @@ export async function fetchAPIDocumentationInfo(): Promise<APIDocumentationInfo>
     return (await fetch('http://127.0.0.1:8000/doc/general_information')).json();
 }
 
-export async function fetchSecretSignatures(token: string) {
-    const res = await fetch(`http://localhost:8000/doc/signatures`, {headers: {"Authorization": `Bearer ${token}`}});
+export async function fetchSecretSignatures(fetchParams: {access_token: string, username?: string}) {
+    const res = await fetch(`http://localhost:8000/doc/signatures`, {headers: {"Authorization": `Bearer ${fetchParams.access_token}`}});
     return await res.json();
 }
 
-export async function fetchResourcesData(token: string): Promise<ResourcesData[]> {
-    const res = await fetch('http://127.0.0.1:8000/doc/resources_data', {headers: {"Authorization": `Bearer ${token}`}});
+export async function fetchResourcesData(fetchParams: {access_token: string, username?: string}): Promise<ResourcesData[]> {
+    const res = await fetch('http://127.0.0.1:8000/doc/resources_data', {headers: {"Authorization": `Bearer ${fetchParams.access_token}`}});
     return await res.json();
 }
 
@@ -110,9 +110,9 @@ export async function fetchAverageDaySamples(fetchParams: AvgTSParams & {usernam
     return await res.json();
 }
 
-export async function fetchLatestSamples(fetchParams: {username: string, token: string}) {
+export async function fetchLatestSamples(fetchParams: {username: string, access_token: string}) {
     const res = await fetch(`http://localhost:8000/user/${fetchParams.username}/samples/latest`, {
-        headers: {"Authorization": `Bearer ${fetchParams.token}`},
+        headers: {"Authorization": `Bearer ${fetchParams.access_token}`},
     })
     return await res.json();
 }
