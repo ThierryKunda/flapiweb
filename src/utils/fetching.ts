@@ -5,6 +5,12 @@ export async function fetchUserRole(token: string) {
     return await res.json();
 }
 
+export async function fetchUserDataExists(reqParams: {username: string, access_token: string}) {
+    const {username, access_token} = reqParams;
+    const res = await fetch(`http://localhost:8000/user/${username}/has_data`, {headers: {"Authorization": `Bearer ${access_token}`}});
+    return await res.json();
+}
+
 export async function fetchResources(): Promise<APIResource[]> {
     return (await fetch('http://localhost:8000/doc/resources')).json();
 }
