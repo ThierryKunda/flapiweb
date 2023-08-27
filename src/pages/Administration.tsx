@@ -5,7 +5,7 @@ import Search from "../components/Search";
 import DataTable from "../components/DataTable";
 import Loader from "../components/Loader";
 
-import { fetchAllUsersStats, fetchResourcesData, fetchSecretSignatures, fetchStats } from "../utils/fetching";
+import { fetchAllFeatures, fetchAllUsersStats, fetchResourcesData, fetchSecretSignatures, fetchStats } from "../utils/fetching";
 import styles from "../style/Administration.module.css";
 import Stats from "../components/Stats";
 import { useSession } from "../contexts";
@@ -35,7 +35,7 @@ const Administration: Component = () => {
             <DataTable
                 tableTitle="Documentation assets"
                 dataTitles={["Resources", "Features"]}
-                fetching={[fetchSecretSignatures, fetchResourcesData]}
+                fetching={[fetchResourcesData, fetchAllFeatures]}
                 maxItemDisplayed={3}
             />
         </div>
