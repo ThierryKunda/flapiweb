@@ -1,6 +1,7 @@
 import { createResource, type Component } from 'solid-js';
 import { createStore } from "solid-js/store";
 import { Routes, Route } from "@solidjs/router";
+import AuthState from './components/AuthState';
 
 import HomePage from './pages/HomePage';
 import Summary from './pages/Summary';
@@ -28,6 +29,7 @@ const App: Component = () => {
     
       <SessionProvider session={session}>
         <Routes>
+          <AuthState>
             <Route path='/'  component={HomePage} />
               <Route path='/summary' component={Summary} />
               <Route path='/docs' component={Documentation} />
@@ -35,6 +37,7 @@ const App: Component = () => {
               <Route path='/password_recovery' component={PasswordRecovery} />
               <Route path='/profile'  component={Profile} />
               <Route path='/new_password'  component={NewPassword} />
+          </AuthState>
         </Routes>
       </SessionProvider>
   );
