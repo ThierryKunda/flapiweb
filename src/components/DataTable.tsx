@@ -7,12 +7,11 @@ import { useSession } from "../contexts";
 
 const DataTable: DataTableComponent = (props) => {
   const [session] = useSession();
-  const getSession = () => ({username: session.username, token: session.access_token})
   const [tabSelected, setTabSelected] = createSignal(0);
   const [currentPage, setCurrentPage] = createSignal(0);
   
   const data = props.fetching.map((fetcher) => {
-    const [d] = createResource(getSession, fetcher);
+    const [d] = createResource(session.access_token, fetcher);
     return d;
   });
 
