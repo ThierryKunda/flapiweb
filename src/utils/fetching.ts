@@ -1,5 +1,10 @@
 import { APIDocumentationInfo, APIResource, AverageTimeSample, AvgTSParams, FetchFeaturesResult, FileUploadParams, FileUploadStatus, PersonalAccessToken, ResourcesData, Stats, UserInfo } from "../types_definition/data";
 
+export async function fetchUserRole(token: string) {
+    const res = await fetch(`http://localhost:8000/user/role`, {headers: {"Authorization": `Bearer ${token}`}});
+    return await res.json();
+}
+
 export async function fetchResources(): Promise<APIResource[]> {
     return (await fetch('http://localhost:8000/doc/resources')).json();
 }
