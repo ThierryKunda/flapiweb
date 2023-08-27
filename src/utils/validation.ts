@@ -3,7 +3,7 @@ export function validateEmail(text?: string) {
 }
 
 export function validateConfirmPassword(password: string, confirmPassword: string) {
-    return password && confirmPassword && password === confirmPassword;
+    return (password !== "") && (password === confirmPassword);
 }
 
 export function validateTimeFormat(t: string) {
