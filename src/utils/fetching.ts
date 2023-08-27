@@ -36,8 +36,9 @@ export async function fetchSecretSignatures(token: string) {
     return await res.json();
 }
 
-export async function fetchResourcesData(): Promise<ResourcesData[]> {
-    return (await fetch('http://127.0.0.1:8000/doc/resources_data')).json();
+export async function fetchResourcesData(token: string): Promise<ResourcesData[]> {
+    const res = await fetch('http://127.0.0.1:8000/doc/resources_data', {headers: {"Authorization": `Bearer ${token}`}});
+    return await res.json();
 }
 
 export async function fetchUserPersonalInfo(token: string): Promise<UserInfo> {
