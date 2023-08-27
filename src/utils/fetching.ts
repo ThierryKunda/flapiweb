@@ -31,17 +31,9 @@ export async function fetchAPIDocumentationInfo(): Promise<APIDocumentationInfo>
     return (await fetch('http://127.0.0.1:8000/doc/general_information')).json();
 }
 
-export async function fetchSecretSignatures() {
-    await new Promise((r) => setTimeout(r, 1000));
-    return [
-        {id: 1, secret_value: "12a9c5d2fe2784", generation_date: "09/07/2023-12:47"},
-        {id: 2, secret_value: "48a5d51c0fae67", generation_date: "12/10/2023-19:33"},
-        {id: 3, secret_value: "1621a1c6cd8af31", generation_date: "29/01/2024-09:21"},
-        {id: 4, secret_value: "1621a1c6cd8af31", generation_date: "29/01/2024-09:21"},
-        {id: 5, secret_value: "1621a1c6cd8af31", generation_date: "29/01/2024-09:21"},
-        {id: 6, secret_value: "1621a1c6cd8af31", generation_date: "29/01/2024-09:21"},
-        {id: 7, secret_value: "1621a1c6cd8af31", generation_date: "29/01/2024-09:21"},
-    ]
+export async function fetchSecretSignatures(token: string) {
+    const res = await fetch(`http://localhost:8000/doc/signatures`, {headers: {"Authorization": `Bearer ${token}`}});
+    return await res.json();
 }
 
 export async function fetchResourcesData(): Promise<ResourcesData[]> {
