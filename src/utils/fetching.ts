@@ -1,12 +1,10 @@
 import { APIDocumentationInfo, APIResource, AverageTimeSample, AvgTSParams, FetchFeaturesResult, FileUploadParams, FileUploadStatus, PersonalAccessToken, ResourcesData, Stats, UserInfo } from "../types_definition/data";
 
 export async function fetchResources(): Promise<APIResource[]> {
-    await new Promise((r) => setTimeout(r, 500));
     return (await fetch('http://localhost:8000/doc/resources')).json();
 }
 
 export async function fetchFeatures(resource: APIResource): Promise<FetchFeaturesResult> {
-    await new Promise((r) => setTimeout(r, Math.random() * 2000));
     return (await fetch(`http://localhost:8000/doc/resource/${resource.resource_name}/features`)).json();
 }
 
