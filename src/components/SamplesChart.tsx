@@ -47,7 +47,7 @@ export const SamplesChart: Component<SamplesChartProps> = (props) => {
           <Match when={averageSamples.state === "ready"}>
             <Line data={data()} options={charOptions} width={500} height={400} />
           </Match>
-          <Match when={averageSamples.state === "pending"}>
+          <Match when={averageSamples.state === "pending" || averageSamples.state === "refreshing"}>
           <Loader loaderType="circle" size="medium" />
           </Match>
           <Match when={averageSamples.state === "errored"}>
