@@ -6,6 +6,7 @@ import { SignInForm, SignUpForm } from "../types_definition/forms";
 import styles from "../style/HomePage.module.css";
 import { useSession } from "../contexts";
 import Loader from "../components/Loader";
+import { validateConfirmPassword } from "../utils/validation";
 
 const HomePage: Component = () => {
     const navigate = useNavigate();
@@ -49,7 +50,7 @@ const SignForm: Component = () => {
 
 const SignIn: Component<{setSignIn: Setter<boolean>, toNextPage: (validInputs: boolean) => void}> = (props) => {
     const [signInForm, {Form, Field, FieldArray}] = createForm<SignInForm>();
-    const [session, {authentificate}] = useSession();
+    const [_, {authentificate}] = useSession();
     const [waitingResponse, setWaitingResponse] = createSignal({waiting: false, failed: false});
     const navigate = useNavigate();
     const handleSubmit: SubmitHandler<SignInForm> = (values, event) => {
@@ -59,7 +60,6 @@ const SignIn: Component<{setSignIn: Setter<boolean>, toNextPage: (validInputs: b
         authSuccess?.then((v) => {
             setWaitingResponse({waiting: false, failed: !v});
             if (v) {
-                console.log(v);
                 navigate("/summary")
             }
         }).catch((e) => setWaitingResponse({waiting: false, failed: true}))
@@ -118,10 +118,20 @@ const SignIn: Component<{setSignIn: Setter<boolean>, toNextPage: (validInputs: b
 
 const SignUp: Component<{setSignIn: Setter<boolean>, toNextPage: (validInputs: boolean) => void}> = (props) => {
     const [signUpForm, {Form, Field, FieldArray}] = createForm<SignUpForm>();
+    const [_, {createAccount}] = useSession();
+    const [waitingResponse, setWaitingResponse] = createSignal({waiting: false, failed: false});
+    const navigate = useNavigate();
     const handleSubmit: SubmitHandler<SignUpForm> = (values, event) => {
-        event.preventDefault();
         // Register user using API - TODO
-        console.log("Registred !")
+        if (validateConfirmPassword(values.password, values.confirmPassword)) {
+            const authSuccess = createAccount?.({firstname: values.firstname, lastname: values.lastname, email: values.email, password: values.password});
+            authSuccess?.then((v) => {
+                setWaitingResponse({waiting: false, failed: !v});
+                if (v) {
+                    navigate("/summary")
+                }
+            }).catch((e) => setWaitingResponse({waiting: false, failed: true}))
+        }
     }
 
     return (
@@ -180,12 +190,20 @@ const SignUp: Component<{setSignIn: Setter<boolean>, toNextPage: (validInputs: b
                     "background-color": "transparent",
                     "color": "#5CD8F3",
                     "border": "2px solid #5CD8F3"
-                }} onClick={(ev) => props.toNextPage(true)} >Sign Up</button>
+                }}>Sign Up</button>
                 <p>Already registered ? <a class={styles.link} onClick={(ev) => {
                     ev.preventDefault();
                     props.setSignIn(true)
                 }}>Log in</a></p>
             </div>
+            <Switch>
+                <Match when={waitingResponse().waiting}>
+                    <Loader loaderType="circle" size="small" />
+                </Match>
+                <Match when={!waitingResponse().waiting && waitingResponse().failed}>
+                    <p>Credentials already used, please choose another one.</p>
+                </Match>
+            </Switch>
         </Form>
     );
 }

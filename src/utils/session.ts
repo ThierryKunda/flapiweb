@@ -1,5 +1,22 @@
 import { TokenInformation } from "../types_definition/data";
 
+export async function createUser(reqParams: {
+    firstname: string,
+    lastname: string,
+    email: string,
+    password: string
+}) {
+    const res = await fetch("http://localhost:8000/user", {
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(reqParams),
+    })
+    return await res.json();
+}
+
 export async function fetchApiToken(reqParams: {
     username: string,
     password: string

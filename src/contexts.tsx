@@ -2,7 +2,7 @@ import { createContext, useContext } from "solid-js";
 import { FlowComponent, JSX } from "solid-js";
 import { TokenInformation } from "./types_definition/data";
 import { createStore } from "solid-js/store";
-import { fetchApiToken, storeApiToken } from "./utils/session";
+import { createUser, fetchApiToken, storeApiToken } from "./utils/session";
 
 type SessionCtxType = [
   {
@@ -10,7 +10,8 @@ type SessionCtxType = [
     username?: string,
   } & Partial<TokenInformation>,
   {
-    authentificate?: (reqParams: {username: string, password: string}) => Promise<boolean>, 
+    authentificate?: (reqParams: {username: string, password: string}) => Promise<boolean>,
+    createAccount?: (reqParams: {firstname: string, lastname: string, email: string, password: string}) => Promise<boolean>
     resetSession?: (tk: TokenInformation) => void,
     quitSession?: () => void,
   }
@@ -43,6 +44,23 @@ export const SessionProvider: FlowComponent<{session: Partial<TokenInformation> 
         } catch (e) {
           return false;
         }
+      },
+      async createAccount(reqParams: {firstname: string, lastname: string, email: string, password: string}) {
+        const res = await createUser(reqParams);
+        if ("detail" in res) {
+          return false;
+        }
+        setState("username", reqParams.firstname + "_" + reqParams.lastname);
+        setState("access_token", res.access_token);
+        setState("token_type", res.token_type);
+        setState("authorized", true);
+        const {access_token, token_type} = res;
+        storeApiToken({
+          username: reqParams.firstname + "_" + reqParams.lastname,
+          access_token,
+          token_type
+        });
+        return true;
       },
       resetSession(tk: TokenInformation) {
         setState("username", undefined);
