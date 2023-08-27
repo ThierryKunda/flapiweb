@@ -14,7 +14,6 @@ const Administration: Component = () => {
     const [drawerVisible, setDrawerVisible] = createSignal(false);
     const [searchModalVisible, setSearchModalVisible] = createSignal(false);
     const [searchInput, setSearchInput] = createSignal('');
-    const [session] = useSession();
 
     return <SuspenseList revealOrder="forwards">
         <div class={styles.administrationPage}>
@@ -26,7 +25,7 @@ const Administration: Component = () => {
                 setSearchInput={setSearchInput}
                 previousInput={searchInput()}
             />
-            <Stats fetching={async () => fetchAllUsersStats(session.access_token!)} />
+            <Stats fetching={fetchAllUsersStats} />
             <DataTable
                 tableTitle="Secret signatures"
                 fetching={[fetchSecretSignatures]}

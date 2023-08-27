@@ -16,9 +16,6 @@ import { useNavigate } from "@solidjs/router";
 const Profile: Component = () => {
   const [session, {quitSession}] = useSession();
   const navigate = useNavigate();
-  if (!session.authorized) {
-    navigate("/");
-  }
   const [drawerVisible, setDrawerVisible] = createSignal(false);
   return <div class={styles.profilePage}>
     <Header setDrawerVisible={setDrawerVisible} />

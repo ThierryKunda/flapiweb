@@ -13,14 +13,8 @@ import { useNavigate } from "@solidjs/router";
 import { useSession } from "../contexts";
 
 const Summary: Component = (props) => {
-    const [drawerVisible, setDrawerVisible] = createSignal(false);
-
-    // Go to login page if user not authentified
-    const navigate = useNavigate();
-    const [session] = useSession();
-    if (!session.authorized) {
-        navigate("/")
-    }
+  const [drawerVisible, setDrawerVisible] = createSignal(false);
+  
   return <div class={styles.summaryPage}>
     <Drawer visible={drawerVisible()} />
     <div class={styles.mainContent}>
