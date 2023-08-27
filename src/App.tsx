@@ -28,13 +28,13 @@ const App: Component = () => {
     
       <SessionProvider session={session}>
         <Routes>
-          <Route path='/'  component={HomePage} />
-            <Route path='/summary' component={Summary} />
-            <Route path='/docs' component={Documentation} />
-            <Route path='/admin' component={Administration} />
-            <Route path='/password_recovery' component={PasswordRecovery} />
-            <Route path='/profile'  component={Profile} />
-            <Route path='/new_password'  component={NewPassword} />
+            <Route path='/'  component={HomePage} />
+              <Route path='/summary' component={Summary} />
+              <Route path='/docs' component={Documentation} />
+              <Route path='/admin' component={Administration} />
+              <Route path='/password_recovery' component={PasswordRecovery} />
+              <Route path='/profile'  component={Profile} />
+              <Route path='/new_password'  component={NewPassword} />
         </Routes>
       </SessionProvider>
   );
