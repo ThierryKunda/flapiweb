@@ -74,7 +74,7 @@ const tableStyle = (size: "medium" | "large" | "full-width") => {
   return { width } as JSX.CSSProperties
   }
 
-const handleValueDisplay = (v: any): string | undefined => {
+const handleTypeDisplay = (v: any): string | undefined => {
   if (v === null) {
     return "null";
   } else if (typeof v === 'boolean') {
@@ -90,7 +90,7 @@ const handleValueDisplay = (v: any): string | undefined => {
 const Record: RecordComponent = (props) => {
   return <div class={styles.record}>
     <For each={Object.values(props.dataItem)}>{(el) =>
-      <span>{removeNewLineSpace(handleValueDisplay(el))}</span>
+      <span>{removeNewLineSpace(handleTypeDisplay(el))}</span>
     }</For>
   </div>;
 };
