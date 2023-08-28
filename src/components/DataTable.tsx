@@ -2,7 +2,7 @@ import { Component, Show, For, createResource, createSignal, Accessor, Setter, J
 import { RecordComponent, TableHeaderProps, PageNavigationProps, DataTableProps } from "../types_definition/props";
 
 import styles from '../style/Administration.module.css';
-import { removeNewLineSpace } from "../utils/other";
+import { handleTypeDisplay, removeNewLineSpace } from "../utils/other";
 import { useSession } from "../contexts";
 
 const DataTable: Component<DataTableProps> = (props) => {
@@ -73,19 +73,6 @@ const tableStyle = (size: "medium" | "large" | "full-width") => {
   }
   return { width } as JSX.CSSProperties
   }
-
-const handleTypeDisplay = (v: any): string | undefined => {
-  if (v === null) {
-    return "null";
-  } else if (typeof v === 'boolean') {
-    return v.toString();
-  }
-  return typeof v === 'string'
-  || typeof v === 'number'
-  || typeof v === 'boolean'
-  || typeof v === 'undefined'
-  || v === null ? v : "Can't format value for display";
-} 
 
 const Record: RecordComponent = (props) => {
   return <div class={styles.record}>

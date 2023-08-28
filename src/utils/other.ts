@@ -67,6 +67,19 @@ function compareHoursAsString(h1: string, h2: string) {
     return 0;
 }
 
+export function handleTypeDisplay(v: any): string | undefined {
+    if (v === null) {
+      return "null";
+    } else if (typeof v === 'boolean') {
+      return v.toString();
+    }
+    return typeof v === 'string'
+    || typeof v === 'number'
+    || typeof v === 'boolean'
+    || typeof v === 'undefined'
+    || v === null ? v : "Can't format value for display";
+  } 
+
 
 export {
     capitalize,
