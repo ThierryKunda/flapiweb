@@ -25,6 +25,7 @@ const Summary: Component = (props) => {
       <div class={styles.mainContent}>
           <SamplesChart fetching={fetchAverageDaySamples} />
           <DataTable
+            size="medium"
             fetching={[fetchLatestSamples]}
             maxItemDisplayed={3}
             tableTitle="Latest samples"

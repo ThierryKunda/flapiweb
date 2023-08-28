@@ -26,12 +26,13 @@ const Administration: Component = () => {
                 previousInput={searchInput()}
             />
             <Stats fetching={fetchAllUsersStats} />
-            <DataTable
+            <DataTable size="full-width"
                 tableTitle="Secret signatures"
                 fetching={[fetchSecretSignatures]}
                 maxItemDisplayed={3}
             />
             <DataTable
+                size="full-width"
                 tableTitle="Documentation assets"
                 dataTitles={["Resources", "Features"]}
                 fetching={[fetchResourcesData, fetchAllFeatures]}

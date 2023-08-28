@@ -1,11 +1,11 @@
-import { Component, Show, For, createResource, createSignal, Accessor, Setter, createEffect } from "solid-js";
-import { RecordComponent, DataTableComponent, TableHeaderProps, PageNavigationProps } from "../types_definition/props";
+import { Component, Show, For, createResource, createSignal, Accessor, Setter, JSX } from "solid-js";
+import { RecordComponent, TableHeaderProps, PageNavigationProps, DataTableProps } from "../types_definition/props";
 
 import styles from '../style/Administration.module.css';
 import { removeNewLineSpace } from "../utils/other";
 import { useSession } from "../contexts";
 
-const DataTable: DataTableComponent = (props) => {
+const DataTable: Component<DataTableProps> = (props) => {
   const [session] = useSession();
   const [tabSelected, setTabSelected] = createSignal(0);
   const [currentPage, setCurrentPage] = createSignal(0);
@@ -28,7 +28,7 @@ const DataTable: DataTableComponent = (props) => {
     var end = currentPage() * props.maxItemDisplayed + props.maxItemDisplayed;
     return currentData?.slice(start,end);
   }
-  return <section class={styles.dataTable}>
+  return <section style={tableStyle(props.size)}>
     <h1>{props.tableTitle}</h1>
       <Show when={props.dataTitles}>
         <DataTitles
@@ -58,6 +58,21 @@ const DataTable: DataTableComponent = (props) => {
        />
   </section>;
 };
+
+const tableStyle = (size: "medium" | "large" | "full-width") => {
+  var width;
+  switch (size) {
+    case "medium":
+      width = "600px"
+      break;
+    case "large":
+      width = "800px"
+    case "full-width":
+      width = "100%"
+      break;
+  }
+  return { width } as JSX.CSSProperties
+  }
 
 const handleValueDisplay = (v: any): string | undefined => {
   if (v === null) {

@@ -43,14 +43,13 @@ export interface TableHeaderProps {
     columnNames: string[]
 }
 
-interface DataTableProps {
+export interface DataTableProps {
     fetching: ResourceFetcher<any, any[], any>[]
     tableTitle: string,
     maxItemDisplayed: number,
     dataTitles?: string[]
+    size: "medium" | "large" | "full-width"
 }
-
-export type DataTableComponent = (props: DataTableProps) => JSX.Element;
 
 export interface PageNavigationProps {
     currentPage: Accessor<number>,
