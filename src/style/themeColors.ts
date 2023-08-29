@@ -1,0 +1,1 @@
+export const primaryAdmin = "#5CD8F3";
