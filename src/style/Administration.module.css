@@ -88,10 +88,7 @@ section {
     text-overflow: ellipsis;
 }
 
-.dataTitles {
-    display: flex;
-    margin-bottom: 20px;
-}
+
 
 .dataTitles button {
     border: 1px solid #2479F6;

@@ -2,8 +2,12 @@ import { Component, Show, For, createResource, createSignal, Accessor, Setter, J
 import { RecordComponent, TableHeaderProps, PageNavigationProps, DataTableProps } from "../types_definition/props";
 
 import styles from '../style/Administration.module.css';
+import { css } from "../../styled-system/css"
 import { handleTypeDisplay, removeNewLineSpace } from "../utils/other";
 import { useSession } from "../contexts";
+import { primaryAdmin } from "../style/themeColors";
+import { ColorToken } from "../../styled-system/tokens";
+import { Property } from "../../styled-system/types/csstype";
 
 const DataTable: Component<DataTableProps> = (props) => {
   const [session] = useSession();
@@ -82,18 +86,80 @@ const Record: RecordComponent = (props) => {
   </div>;
 };
 
+function buttonTabTheming(selectedTabIndex: number, currentTabIndex: number) {
 
-const DataTitles: Component<{dataTitles: string[], tabSelectedIndex: number, setTabSelectedIndex: (idx: number) => void}> = (props) => {
-  
-  return <div class={styles.dataTitles}>
+}
+
+const buttonStyle: JSX.CSSProperties = {
+  border: "1px solid #2479F6",
+  margin: "0 10px",
+  "border-radius": "30px",
+  "background-color": "transparent",
+  color: primaryAdmin,
+  width: "180px",
+  "font-size": "16px",
+  height: "45px",
+  transition: "background-color, color .1s ease-in-out",
+
+}
+
+const DataTitles: Component<{dataTitles: string[], tabSelectedIndex: number, setTabSelectedIndex: (idx: number) => void}> = (props) => {;
+  return <div class={css({display: "flex", marginBottom: "5"})}>
   <For each={props.dataTitles}>{(title, i) =>
-    <button classList={{
-      [styles.tabSelected]: props.tabSelectedIndex === i()
-    }} onClick={() => props.setTabSelectedIndex(i())}>
-      <h2>{title}</h2>
-    </button>
+    <TableTabStyled
+      title={title}
+      currentTabIndex={i()}
+      selectedTabIndex={props.tabSelectedIndex}
+      setTabSelectedIndex={props.setTabSelectedIndex}
+    />
   }</For>
 </div>;
+};
+
+const TableTabStyled: Component<{title: string, currentTabIndex: number, selectedTabIndex: number, setTabSelectedIndex: (idx: number) => void}> = (props) => {
+  return <Show when={props.currentTabIndex === props.selectedTabIndex}
+    fallback={
+      <TableTab
+        backgroundColor="transparent"
+        color="primary.admin"
+        title={props.title}
+        currentTabIndex={props.currentTabIndex}
+        setTabSelectedIndex={props.setTabSelectedIndex}
+    />
+    }
+  >
+    <TableTab
+      backgroundColor="primary.admin"
+      color="white"
+      title={props.title}
+      currentTabIndex={props.currentTabIndex}
+      setTabSelectedIndex={props.setTabSelectedIndex}
+    />
+  </Show>;
+};
+
+const TableTab: Component<{backgroundColor: ColorToken | Property.BackgroundColor, color: ColorToken | Property.Color, title: string, currentTabIndex: number, setTabSelectedIndex: (idx: number) => void}> = (props) => {
+  return <button
+    class={css({
+      border: "1px solid #2479F6",
+      margin: "0 10px",
+      borderRadius: "30px",
+      backgroundColor: props.backgroundColor,
+      color: props.color,
+      width: "180px",
+      fontSize: "20px",
+      height: "45px",
+      transitionProperty: ["color", "background-color"],
+      transitionDuration: "0.1s",
+      transitionTimingFunction: "ease-in-out",
+      _hover: {
+        backgroundColor: "primary.admin",
+        color: "white"
+      }
+    })}
+  onClick={() => props.setTabSelectedIndex(props.currentTabIndex)}>
+    <h2>{props.title}</h2>
+</button>;
 };
 
 const TableHeader: Component<TableHeaderProps> = (props) => {
