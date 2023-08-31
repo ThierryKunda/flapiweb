@@ -86,23 +86,6 @@ const Record: RecordComponent = (props) => {
   </div>;
 };
 
-function buttonTabTheming(selectedTabIndex: number, currentTabIndex: number) {
-
-}
-
-const buttonStyle: JSX.CSSProperties = {
-  border: "1px solid #2479F6",
-  margin: "0 10px",
-  "border-radius": "30px",
-  "background-color": "transparent",
-  color: primaryAdmin,
-  width: "180px",
-  "font-size": "16px",
-  height: "45px",
-  transition: "background-color, color .1s ease-in-out",
-
-}
-
 const DataTitles: Component<{dataTitles: string[], tabSelectedIndex: number, setTabSelectedIndex: (idx: number) => void}> = (props) => {;
   return <div class={css({display: "flex", marginBottom: "20px"})}>
   <For each={props.dataTitles}>{(title, i) =>
