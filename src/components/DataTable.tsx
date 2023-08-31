@@ -79,9 +79,28 @@ const tableStyle = (size: "medium" | "large" | "full-width") => {
   }
 
 const Record: RecordComponent = (props) => {
-  return <div class={styles.record}>
+  return <div class={css({
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "10px 50px",
+    margin: "10px 0",
+    minHeight: "60px",
+    fontSize: "24px",
+    border: "1px solid #AAAAAA",
+    borderRadius: "10px",
+  })}>
     <For each={Object.values(props.dataItem)}>{(el) =>
-      <span>{removeNewLineSpace(handleTypeDisplay(el))}</span>
+      <span class={css({
+        display: "inline-block",
+        maxHeight: "80px",
+        fontSize: "20px",
+        textAlign: "center",
+        width: "120px",
+        overflow: "hidden",
+        whiteSpace: "nowrap",
+        textOverflow: "ellipsis",
+      })}>{removeNewLineSpace(handleTypeDisplay(el))}</span>
     }</For>
   </div>;
 };
