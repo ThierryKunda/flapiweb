@@ -162,16 +162,54 @@ const PageNavigation: Component<PageNavigationProps> = (props) => {
   const handleNextDisable = () =>
     props.currentItems === undefined || props.currentItems.length === 0
   
-  return <div class={styles.pageNavigation}>
-        <button
-          onClick={() => props.prevPage(props.currentPage, props.updater)}
-          disabled={handlePrevDisable()}
-        >&lt;</button>
-      <div>{props.currentPage()+1}</div>
-      <button
-        onClick={() => props.nextPage(props.currentPage, props.updater)}
-        disabled={handleNextDisable()}
-        >&gt;</button>
+  return <div
+   class={css({
+    bottom: 0,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: "40px",
+   })}
+    >
+      <PageNavigationButton
+        title="&lt;"
+        onClick={() => props.prevPage(props.currentPage, props.updater)}
+        disabled={handlePrevDisable()}
+      />
+      <div class={css({
+        width: "50px",
+        height: "50px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      })}>{props.currentPage()+1}</div>
+        <PageNavigationButton
+          title="&gt;"
+          onClick={() => props.nextPage(props.currentPage, props.updater)}
+          disabled={handleNextDisable()}
+        />
   </div>
 }
+
+const PageNavigationButton: Component<{title: string, onClick: () => void, disabled: boolean}> = (props) => {
+  
+  return <button
+    class={css({
+      border: "1px solid #AAAAAA",
+      width: "50px",
+      height: "50px",
+      borderRadius: "5px",
+      cursor: "pointer",
+      fontSize: "20px",
+      transitionProperty: "background-color",
+      transitionTimingFunction: "ease-in",
+      transitionDuration: ".1s",
+      "&:hover": {
+        backgroundColor: "#eee",
+      }
+    })}
+    {...props}
+    >{props.title}</button>;
+};
+
 export default DataTable;
