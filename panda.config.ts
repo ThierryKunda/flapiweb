@@ -17,7 +17,14 @@ export default defineConfig({
         colors: {
           primary: {
             user: {value: "#5CD8F3"},
-            admin: {value: "#5C99F3"}
+            admin: {value: "#5C99F3"},
+          }
+        },
+        sizes: {
+          tableSize: {
+            normal: {value: "600px"},
+            large: {value: "800px"},
+            fullWidth: {value: "100%"},
           }
         }
       }

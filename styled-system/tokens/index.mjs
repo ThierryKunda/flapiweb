@@ -7,25 +7,17 @@ const tokens = {
     "value": "#5C99F3",
     "variable": "var(--colors-primary-admin)"
   },
-  "breakpoints.sm": {
-    "value": "640px",
-    "variable": "var(--breakpoints-sm)"
+  "sizes.tableSize.normal": {
+    "value": "600px",
+    "variable": "var(--sizes-table-size-normal)"
   },
-  "breakpoints.md": {
-    "value": "768px",
-    "variable": "var(--breakpoints-md)"
+  "sizes.tableSize.large": {
+    "value": "800px",
+    "variable": "var(--sizes-table-size-large)"
   },
-  "breakpoints.lg": {
-    "value": "1024px",
-    "variable": "var(--breakpoints-lg)"
-  },
-  "breakpoints.xl": {
-    "value": "1280px",
-    "variable": "var(--breakpoints-xl)"
-  },
-  "breakpoints.2xl": {
-    "value": "1536px",
-    "variable": "var(--breakpoints-2xl)"
+  "sizes.tableSize.fullWidth": {
+    "value": "100%",
+    "variable": "var(--sizes-table-size-full-width)"
   },
   "sizes.breakpoint-sm": {
     "value": "640px",
@@ -46,6 +38,26 @@ const tokens = {
   "sizes.breakpoint-2xl": {
     "value": "1536px",
     "variable": "var(--sizes-breakpoint-2xl)"
+  },
+  "breakpoints.sm": {
+    "value": "640px",
+    "variable": "var(--breakpoints-sm)"
+  },
+  "breakpoints.md": {
+    "value": "768px",
+    "variable": "var(--breakpoints-md)"
+  },
+  "breakpoints.lg": {
+    "value": "1024px",
+    "variable": "var(--breakpoints-lg)"
+  },
+  "breakpoints.xl": {
+    "value": "1280px",
+    "variable": "var(--breakpoints-xl)"
+  },
+  "breakpoints.2xl": {
+    "value": "1536px",
+    "variable": "var(--breakpoints-2xl)"
   },
   "colors.colorPalette.user": {
     "value": "var(--colors-color-palette-user)",

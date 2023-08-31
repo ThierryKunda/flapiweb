@@ -29,7 +29,7 @@ const DataTable: Component<DataTableProps> = (props) => {
     var end = currentPage() * props.maxItemDisplayed + props.maxItemDisplayed;
     return currentData?.slice(start,end);
   }
-  return <section style={tableStyle(props.size)}>
+  return <section class={css({width: props.size})}>
     <h1>{props.tableTitle}</h1>
       <Show when={props.dataTitles}>
         <DataTitles
@@ -59,21 +59,6 @@ const DataTable: Component<DataTableProps> = (props) => {
        />
   </section>;
 };
-
-const tableStyle = (size: "medium" | "large" | "full-width") => {
-  var width;
-  switch (size) {
-    case "medium":
-      width = "600px"
-      break;
-    case "large":
-      width = "800px"
-    case "full-width":
-      width = "100%"
-      break;
-  }
-  return { width } as JSX.CSSProperties
-  }
 
 const Record: RecordComponent = (props) => {
   return <div class={css({

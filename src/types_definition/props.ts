@@ -1,6 +1,7 @@
 import { JSX, Setter, Accessor, ResourceFetcher } from "solid-js"
 import { LoaderType } from "../miscellaneous";
 import { AverageTimeSample, BlockOfContent, FileUploadStatus, Stats } from "./data";
+import { SizeToken } from "../../styled-system/tokens";
 
 export interface APIDocDescriptionBlockProps {
     title: string,
@@ -48,7 +49,7 @@ export interface DataTableProps {
     tableTitle: string,
     maxItemDisplayed: number,
     dataTitles?: string[]
-    size: "medium" | "large" | "full-width"
+    size: SizeToken
 }
 
 export interface PageNavigationProps {
