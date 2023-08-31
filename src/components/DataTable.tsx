@@ -1,11 +1,8 @@
 import { Component, Show, For, createResource, createSignal, Accessor, Setter, JSX } from "solid-js";
 import { RecordComponent, TableHeaderProps, PageNavigationProps, DataTableProps } from "../types_definition/props";
-
-import styles from '../style/Administration.module.css';
 import { css } from "../../styled-system/css"
 import { handleTypeDisplay, removeNewLineSpace } from "../utils/other";
 import { useSession } from "../contexts";
-import { primaryAdmin } from "../style/themeColors";
 import { ColorToken } from "../../styled-system/tokens";
 import { Property } from "../../styled-system/types/csstype";
 
