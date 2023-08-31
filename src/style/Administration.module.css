@@ -41,34 +41,3 @@ section {
 .statsValues span {
     display: block;
 }
-
-.dataTitles button:first-child {
-    margin-left: 0;
-}
-
-.dataTitles button:last-child {
-    margin-right: 0;
-}
-
-.dataTitles h2 {
-    font-weight: normal;
-}
-
-.pageNavigation {
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
-}
-
-.pageNavigation div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.pageNavigation button, .pageNavigation div {
-    border: 1px solid #AAAAAA;
-    width: 50px;
-    height: 50px;
-}
