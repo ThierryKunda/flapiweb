@@ -42,29 +42,6 @@ section {
     display: block;
 }
 
-
-.tableHeader {
-    margin-bottom: 40px;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 50px;
-    border-radius: 10px;
-    border: 1px solid #2479F6;
-    background-color: var(--primary-admin);
-    color: white;
-}
-
-.tableHeader span {
-    text-align: center;
-    display: block;
-    font-weight: 500;
-    width: 120px;
-    font-size: small;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
 .dataTitles button:first-child {
     margin-left: 0;
 }

@@ -168,9 +168,28 @@ const TableTab: Component<{backgroundColor: ColorToken | Property.BackgroundColo
 };
 
 const TableHeader: Component<TableHeaderProps> = (props) => {
-  return <div class={styles.tableHeader}>
+  return <div class={css({
+    marginBottom: "40px",
+    display: "flex",
+    justifyContent: "space-between",
+    padding: "10px 50px",
+    borderRadius: "10px",
+    border: "1px solid #2479F6",
+    backgroundColor: "primary.admin",
+    color: "white",
+  })}>
     <For each={props.columnNames}>{(columnName) =>
-      <span>{columnName}</span>
+      <span class={css({
+        textAlign: "center",
+        display: "block",
+        fontWeight: "500",
+        width: "120px",
+        fontSize: "small",
+        overflow: "hidden",
+        whiteSpace: "nowrap",
+        textOverflow: "ellipsis",
+      })}
+      title={columnName}>{columnName}</span>
     }</For>
   </div>
 }
