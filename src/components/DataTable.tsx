@@ -210,7 +210,7 @@ const PageNavigation: Component<PageNavigationProps> = (props) => {
    })}
     >
       <PageNavigationButton
-        title="&lt;"
+        description="<"
         onClick={() => props.prevPage(props.currentPage, props.updater)}
         disabled={handlePrevDisable()}
       />
@@ -222,15 +222,14 @@ const PageNavigation: Component<PageNavigationProps> = (props) => {
         alignItems: "center",
       })}>{props.currentPage()+1}</div>
         <PageNavigationButton
-          title="&gt;"
+          description=">"
           onClick={() => props.nextPage(props.currentPage, props.updater)}
           disabled={handleNextDisable()}
         />
   </div>
 }
 
-const PageNavigationButton: Component<{title: string, onClick: () => void, disabled: boolean}> = (props) => {
-  
+const PageNavigationButton: Component<{description: string, onClick: () => void, disabled: boolean}> = (props) => {
   return <button
     class={css({
       border: "1px solid #AAAAAA",
@@ -247,7 +246,7 @@ const PageNavigationButton: Component<{title: string, onClick: () => void, disab
       }
     })}
     {...props}
-    >{props.title}</button>;
+    title={props.description === "<" ? "Previous" : "Next"}>{props.description}</button>;
 };
 
 export default DataTable;
