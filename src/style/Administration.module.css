@@ -88,25 +88,6 @@ section {
     text-overflow: ellipsis;
 }
 
-
-
-.dataTitles button {
-    border: 1px solid #2479F6;
-    margin: 0 10px;
-    border-radius: 30px;
-    background-color: transparent;
-    color: var(--primary-admin);
-    width: 180px;
-    font-size: 16px;
-    height: 45px;
-    transition: background-color, color .1s ease-in-out;
-}
-
-button.tabSelected, .dataTitles button:hover {
-    background-color: var(--primary-admin);
-    color: white;
-}
-
 .dataTitles button:first-child {
     margin-left: 0;
 }

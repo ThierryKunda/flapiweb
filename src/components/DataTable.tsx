@@ -104,7 +104,7 @@ const buttonStyle: JSX.CSSProperties = {
 }
 
 const DataTitles: Component<{dataTitles: string[], tabSelectedIndex: number, setTabSelectedIndex: (idx: number) => void}> = (props) => {;
-  return <div class={css({display: "flex", marginBottom: "5"})}>
+  return <div class={css({display: "flex", marginBottom: "20px"})}>
   <For each={props.dataTitles}>{(title, i) =>
     <TableTabStyled
       title={title}
@@ -142,7 +142,10 @@ const TableTab: Component<{backgroundColor: ColorToken | Property.BackgroundColo
   return <button
     class={css({
       border: "1px solid #2479F6",
-      margin: "0 10px",
+      marginRight: "10px",
+      "&:last-child": {
+        marginRight: "0",
+      },
       borderRadius: "30px",
       backgroundColor: props.backgroundColor,
       color: props.color,
